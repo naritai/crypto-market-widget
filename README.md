@@ -1,0 +1,1 @@
+### React-TypeScript-Jest boilerplate
