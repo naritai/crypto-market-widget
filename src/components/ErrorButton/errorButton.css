@@ -1,0 +1,10 @@
+.error-button {
+  width: 200px;
+  height: 50px;
+
+  background-color: rgb(180, 66, 66);
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 2px solid gray;
+}

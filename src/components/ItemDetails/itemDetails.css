@@ -1,0 +1,24 @@
+.item-details-container {
+  width: 50vw;
+}
+
+.item-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-details-title {
+  color: palevioletred;
+}
+
+.item-details-body {
+  display: flex;
+}
+
+.item-details-body img {
+  margin-right: 1.2em;
+  margin-bottom: 1.2em;
+}
+.term {
+  margin-right: 1.2em;
+}
