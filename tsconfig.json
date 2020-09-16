@@ -39,4 +39,10 @@
     "forceConsistentCasingInFileNames": true,
     "importHelpers": true
   },
+  "allowSyntheticDefaultImports": false,
+  "baseUrl": ".",
+  "paths": {
+    "~services/*": ["src/services/*"]
+  },
+  "exclude": ["node_modules", "dist"]
 }

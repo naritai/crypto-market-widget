@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 type Props = {
   onItemClick: (id: number) => void;
   getData: () => Promise<any>;
+  color: any;
 };
 
 const withData = (View: any) => {
@@ -16,7 +17,7 @@ const withData = (View: any) => {
     componentDidMount() {
       this.getItemList();
     };
-  
+
     getItemList = () => {
       this.setState({ loading: true });
       this.props.getData()
@@ -50,3 +51,29 @@ const withData = (View: any) => {
 };
 
 export default withData;
+
+
+
+// spread object оператор
+const carsObj = { 
+  first: { brand: 'Kia', model: 'Rio', year: 2004 },
+  second: { brand: 'bmw', model: 'X5', year: 2010 },  
+};
+
+const moreCarsObj = { ...carsObj, third: { brand: 'chevrolet' } };
+
+console.log(moreCarsObj === carsObj); // false, разные ссылки
+console.log(moreCarsObj.first === carsObj.first); // true !!!
+
+// НО, когда мы мутируем один из внутренних объектов, второй не меняется
+moreCarsObj.first = { brand: 'Lada', model: 'Priora', year: 2015 };
+console.log(moreCarsObj.first); // { brand: 'Lada', model: 'Priora', year: 2015 };
+console.log(carsObj.first); // { brand: 'Kia', model: 'Rio', year: 2004 }
+
+
+// spread array оператор
+const cars = [{ brand: 'chevrolet' }, { brand: 'cadillac' }]
+const moreCars = [...cars, { brand: 'subaru' }]
+
+console.log(moreCars === cars); // false
+console.log(moreCars[0] === cars[0]); // true !!!

@@ -5,7 +5,9 @@
       {
         "targets": {
           "node": "10"
-        }
+        },
+        "modules": false,
+        "loose": true
       }
     ],
     "@babel/preset-typescript",

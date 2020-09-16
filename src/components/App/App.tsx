@@ -1,22 +1,24 @@
 import React from 'react';
 import Header from '../Header';
-import { MarvelServiceProvider } from '../marvel-service-context';
-import { MarvelService } from '../../services/marvelService';
 import ErrorBoundry from '../ErrorBoundry';
-import CharactersPage from '../pages/CharactersPage';
-import ComicsPage from '../pages/ComicsPage';
-import '../../bootstrap.min.css';
-
-const marvelAPI = new MarvelService();
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import PageNotFound from '../pages/PageNotFound';
+import store from '../../store/store';
+import { Provider } from 'react-redux';
+import HomePage from '../pages/HomePage';
 
 export const App = () => {
   return (
-    <ErrorBoundry>
-      <MarvelServiceProvider value={marvelAPI}>
-        <Header />
-        <CharactersPage />
-        <ComicsPage />
-      </MarvelServiceProvider>
-    </ErrorBoundry>
+    <Provider store={store}>
+      <ErrorBoundry>
+          <Router>
+            <Header />
+            <Switch>
+              <Route exact path='/' component={HomePage} />
+              <Route render={() => <PageNotFound />} />
+            </Switch>
+          </Router>
+      </ErrorBoundry>
+    </Provider>
   )
 };

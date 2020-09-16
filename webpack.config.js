@@ -1,41 +1,52 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const _ = require('dotenv').config();
-const Dotenv = require('dotenv-webpack');
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
+const dotenv = require('dotenv');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = () => {
+  const env = dotenv.config().parsed;
+
+  const envKeys = Object.keys(env).reduce((prev, next) => {
+    return prev[`process.env.${next}`] = JSON.stringify(env[next]);
+  }, {});
+
   return {
-    // webpack will take the files from ./src/index
-    entry: './src/index',
-  
-    // and output it into /dist as bundle.js
+    context: path.resolve(__dirname, 'src'),
+
+    entry: './index',
+
     output: {
-      path: path.join(__dirname, '/dist'),
-      filename: 'bundle.js'
+      filename: 'bundle.[hash].js',
+      path: path.resolve(__dirname, '/dist'),
+      publicPath: '/',
     },
-  
+
     plugins: [
       new HtmlWebpackPlugin({
         title: 'Marvel API',
-        template: './public/index.html'
+        meta: {
+          viewport: "width=device-width, initial-scale=1, shrink-to-fit=no"
+        }
       }),
-
-      // TODO: FIX LATER
-      new Dotenv({
-        path: path.resolve(__dirname,'.env')
+      new ScriptExtHtmlWebpackPlugin({
+        custom: [
+          {
+            test: /\.js$/,
+            attribute: 'type',
+            value: 'application/javascript'
+          }
+        ]
       }),
+      new CleanWebpackPlugin(),
+      new webpack.DefinePlugin({
+        'process.env.API_KEY': JSON.stringify(env['API_KEY'])
+      })
     ],
-  
-    // adding .ts and .tsx to resolve.extensions will help babel look for .ts and .tsx files to transpile
-    resolve: {
-      extensions: ['.ts', '.tsx', '.js']
-    },
-  
+   
     module: {
       rules: [
-  
-        // we use babel-loader to load our jsx and tsx files
         {
           test: /\.(ts|js)x?$/,
           exclude: /node_modules/,
@@ -43,7 +54,6 @@ module.exports = () => {
               loader: 'babel-loader'
           },
         },
-  
         // css-loader to bundle all the css files into one file 
         // style-loader to add all the styles inside the style tag of the document
         {
@@ -51,6 +61,26 @@ module.exports = () => {
           use: ['style-loader', 'css-loader']
         }
       ]
-    }
+    },
+
+    optimization: {
+      splitChunks: {
+        chunks: "all"
+      }
+    },
+
+    devServer: {
+      contentBase: path.resolve(__dirname, 'dist'),
+      compress: true,
+      port: 9000,
+      historyApiFallback: true
+    },
+
+    resolve: {
+      extensions: ['.ts', '.tsx', '.js', '.jsx'],
+      alias: {
+        "~services": path.resolve(__dirname, 'src/services/')
+      }
+    },
   }
 };

@@ -1,17 +1,17 @@
 import React from 'react';
+import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import './header.css';
 
 export const Header = () => {
   return (
-    <div className='header-container'>
-      <div className='logo'>
-        Logo
-      </div>
-      <ul className='main-menu'>
-        <li className='main-menu__item'>Films</li>
-        <li className='main-menu__item'>About</li>
-        <li className='main-menu__item'>Contacts</li>
-      </ul>
+    <div className="main-header">
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6">
+            Market widget
+          </Typography>
+        </Toolbar>
+      </AppBar>
     </div>
   )
 };
