@@ -1,9 +1,15 @@
-const ws = new WebSocket('wss://stream.binance.com/stream?streams=!miniTicker@arr');
+const WS_API = 'wss://stream.binance.com/stream?streams=!miniTicker@arr';
 
-if (ws.readyState === "CONNECTING") {
-  console.log("CONNECTING")
-}
+export function connectToWebsocket(hadnleMessage) {
+  const ws = new WebSocket(WS_API);
 
-if (ws.readyState === "OPEN") {
-  console.log("OPEN!")
+  // ws.onmessage = function (event) {
+  //   console.log("MESSAGE!")
+  
+  //   const { data } = event;
+  //   const parsedData = JSON.parse(data);
+  //   hadnleMessage(parsedData);
+  // }
+
+  return ws;
 }

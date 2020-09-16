@@ -5,6 +5,8 @@ import { List } from '@material-ui/core';
 import "./market-assets-list.css";
 import MarketAssetsListHeader from './MarketAssetsListHeader';
 import { makeStyles } from '@material-ui/core/styles';
+import { getFilteredAssets } from '../../../store/selectors/marketWidget';
+
 
 const styles = makeStyles({
   root: {
@@ -15,7 +17,7 @@ const styles = makeStyles({
 
 const mapStateToProps = (state: any) => {
   return {
-    data: state.data
+    assets: getFilteredAssets(state)
   }
 };
 
@@ -23,24 +25,26 @@ const mapDispatchToProps = (dispatch: any) => {
   return {};
 }
 
-const MarketAssetsList = ({ data }: any) => {
-  if (!data) {
+const MarketAssetsList = ({ assets }: any) => {
+  if (!assets.length) {
     return null;
   }
 
   const classes = styles();
 
   return (
-    <List dense classes={{ root: classes.root }}>
+    <div className="market-assets-list">
       <MarketAssetsListHeader />
-      {
-        data.map((item: any, idx: any) => {
-          return (
-            <MarketAssetsListItem key={idx} asset={item} />
-          )
-        })
-      }
-    </List>
+      <List dense classes={{ root: classes.root }}>
+        {
+          assets.map((item: any, idx: any) => {
+            return (
+              <MarketAssetsListItem key={idx} asset={item} />
+            )
+          })
+        }
+      </List>
+    </div>
   )
 }
 

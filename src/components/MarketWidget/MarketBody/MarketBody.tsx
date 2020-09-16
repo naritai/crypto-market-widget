@@ -1,25 +1,8 @@
-import React, { useEffect } from "react";
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { fetchMarketData } from '../../../store/actions';
+import React from "react";
 import MarketAssetsList from '../MarketAssestList';
 import "./market-body.css";
 
-const mapStateToProps = (state: any) => {
-  return { state }
-};
-
-const mapDispatchToProps = (dispatch: any) => {
-  return bindActionCreators({ fetchMarketData }, dispatch);
-}
-
-const MarketBody = ({ state, fetchMarketData }: any) => {
-  // console.log(state);
-
-  useEffect(() => {
-    fetchMarketData();
-  }, []);
-
+const MarketBody = () => {
   return (
     <div className="market-body">
       <MarketAssetsList />
@@ -27,7 +10,4 @@ const MarketBody = ({ state, fetchMarketData }: any) => {
   )
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(MarketBody);
+export default MarketBody;

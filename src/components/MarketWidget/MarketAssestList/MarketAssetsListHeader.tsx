@@ -3,7 +3,7 @@ import React from "react";
 
 const MarketAssetsListHeader = () => {
   return (
-    <div>
+    <div className="market-assets-list-header">
       <ListItem dense divider>
         <ListItemText>
           <Typography variant="h5" gutterBottom>
