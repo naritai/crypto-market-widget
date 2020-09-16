@@ -1,15 +1,15 @@
 import React from "react";
-import MarketWidgetHeader from './MarketWidgetHeader';
-import MarketWidgetBody from './MarketWidgetBody';
+import MarketHeader from './MarketHeader';
+import MarketBody from './MarketBody';
 import { Paper } from '@material-ui/core';
 import "./styles.css";
 
 const MarketWidget = () => {
   return (
     <div className="market-widget">
-      <Paper square elevation="2">
-        <MarketWidgetHeader />
-        <MarketWidgetBody />
+      <Paper square elevation="3">
+        <MarketHeader />
+        <MarketBody />
       </Paper>
     </div>
   )

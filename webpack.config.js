@@ -25,7 +25,7 @@ module.exports = () => {
 
     plugins: [
       new HtmlWebpackPlugin({
-        title: 'Marvel API',
+        title: 'Market Widget',
         meta: {
           viewport: "width=device-width, initial-scale=1, shrink-to-fit=no"
         }

@@ -1,0 +1,6 @@
+.market-groups {
+  display: flex;
+  padding: 5px;
+  justify-content: space-around;
+  border-bottom: 2px solid gray;
+}
