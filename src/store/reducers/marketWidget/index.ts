@@ -1,4 +1,4 @@
-import { ASSETS_FILTER } from '../../../utils/marketWidget';
+import { ASSETS_FILTER, ASSETS_MODE } from '../../../utils/marketWidget';
 
 const initialState = {
   loading: false,
@@ -6,7 +6,8 @@ const initialState = {
   assets: [],
   filter: ASSETS_FILTER.MARGIN,
   assetIndexes: null,
-  searchValue: ''
+  searchValue: '',
+  showMode: ASSETS_MODE.CHANGE
 };
 
 import {
@@ -16,7 +17,8 @@ import {
   SET_ASSET_FILTER,
   SET_UPDATED_MARKET_DATA,
   SAVE_MARKET_ASSETS_INDEXES,
-  SET_SEARCH_ASSET_VALUE
+  SET_SEARCH_ASSET_VALUE,
+  SET_ASSETS_SHOW_MODE
 } from '../../actions';
 
 function marketWidget(state = initialState, action: any) {
@@ -66,6 +68,12 @@ function marketWidget(state = initialState, action: any) {
         ...state,
         searchValue: action.payload
       };
+    
+    case SET_ASSETS_SHOW_MODE:
+      return {
+        ...state,
+        showMode: action.payload
+      }
 
     default:
       return state;

@@ -17,7 +17,7 @@ const MarketWidget = ({ fetchMarketData, setUpdatedMarketData }: any) => {
 
   const delayedMessageHandler = _.throttle(
     setUpdatedMarketData,
-    3500
+    2000
   );
 
   return (

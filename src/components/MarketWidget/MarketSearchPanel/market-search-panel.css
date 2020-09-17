@@ -23,3 +23,7 @@
 .search-asset-input::placeholder {
   color: #274C77;
 }
+
+.asset-show-mode {
+  cursor: pointer;
+}

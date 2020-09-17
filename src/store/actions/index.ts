@@ -6,6 +6,7 @@ export const SET_ASSET_FILTER = 'SET_ASSET_FILTER';
 export const SET_UPDATED_MARKET_DATA = 'SET_UPDATED_MARKET_DATA';
 export const SAVE_MARKET_ASSETS_INDEXES = 'SAVE_MARKET_ASSETS_INDEXES';
 export const SET_SEARCH_ASSET_VALUE = 'SET_SEARCH_ASSET_VALUE';
+export const SET_ASSETS_SHOW_MODE = 'SET_ASSETS_SHOW_MODE';
 
 const fetchMarketDataRequest = () => ({ type: FETCH_MARKET_DATA_REQUEST });
 const fetchMarketDataFailure = () => ({ type: FETCH_MARKET_DATA_FAILURE });
@@ -88,11 +89,19 @@ const setSearchAssetValue = (value: string) => (dispatch: any) => {
   })
 };
 
+const setAssetsShowMode = (mode: string) => (dispatch: any) => {
+  dispatch({
+    type: SET_ASSETS_SHOW_MODE,
+    payload: mode
+  })
+}
+
 export { 
   fetchMarketData, 
   setAssetFilter,
   setUpdatedMarketData,
-  setSearchAssetValue
+  setSearchAssetValue,
+  setAssetsShowMode
 };
 
 

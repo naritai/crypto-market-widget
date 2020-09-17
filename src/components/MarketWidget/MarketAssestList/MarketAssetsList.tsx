@@ -5,20 +5,13 @@ import "./market-assets-list.css";
 import MarketAssetsListHeader from './MarketAssetsListHeader';
 import { ASSETS_FILTER } from '../../../utils/marketWidget';
 
-const mapStateToProps = (state: any) => {
-  return {
-    assets: state.marketWidget.assets,
-    filter: state.marketWidget.filter,
-    searchValue: state.marketWidget.searchValue,
-    loading: state.marketWidget.loading,
-  }
-};
-
-const mapDispatchToProps = (dispatch: any) => {
-  return {};
-}
-
-const MarketAssetsList = ({ assets, filter, searchValue, loading }: any) => {
+const MarketAssetsList = ({ 
+  assets, 
+  filter, 
+  searchValue, 
+  loading,
+  showMode
+}: any) => {
   if (loading) {
     return (
       <div className="loading-indicator">
@@ -33,28 +26,42 @@ const MarketAssetsList = ({ assets, filter, searchValue, loading }: any) => {
       return asset.pm === filter;
     })
   }
-  
+
   if (searchValue) {
     const lower = searchValue.toLowerCase();
-    resolvedAssets = assets && assets.filter((asset: any) => {
+    resolvedAssets = resolvedAssets && resolvedAssets.filter((asset: any) => {
       return asset.s.toLowerCase().includes(lower)
     });
   }
 
   return (
     <div>
-      <MarketAssetsListHeader />
+      <MarketAssetsListHeader showMode={showMode} />
       <div className="market-assets-list">
         {
           resolvedAssets && resolvedAssets.map((item: any, idx: any) => {
             return (
-              <MarketAssetsListItem key={idx} asset={item} />
+              <MarketAssetsListItem key={idx} asset={item} showMode={showMode} />
             )
           })
         }
       </div>
     </div>
   )
+};
+
+const mapStateToProps = (state: any) => {
+  return {
+    assets: state.marketWidget.assets,
+    filter: state.marketWidget.filter,
+    searchValue: state.marketWidget.searchValue,
+    loading: state.marketWidget.loading,
+    showMode: state.marketWidget.showMode,
+  }
+};
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {};
 }
 
 export default connect(

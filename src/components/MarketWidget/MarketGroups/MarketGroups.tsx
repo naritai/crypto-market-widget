@@ -29,24 +29,26 @@ const MarketGroups = ({ setAssetFilter, filter }: any) => {
     setAssetFilter(ASSETS_FILTER.BNB);
   };
 
+  const setALTSParentMarket = () => {
+    setActive(ASSETS_FILTER.ALTS);
+    setAssetFilter(ASSETS_FILTER.ALTS);
+  };
+
   const setMargin = () => {
     setActive(ASSETS_FILTER.MARGIN);
     setAssetFilter(ASSETS_FILTER.MARGIN);
   };
 
-  const handleALTSChange = (event: any) => {
-    const { value } = event.target;
-    setActive(value);
-    setAssetFilter(value);
-  }
+  // const handleALTSChange = (event: any) => {
+  //   const { value } = event.target;
+  //   setActive(value);
+  //   setAssetFilter(value);
+  // }
 
   const isBtcActive = active === ASSETS_FILTER.BTC;
   const isBnbActive = active === ASSETS_FILTER.BNB;
   const isMarginActive = active === ASSETS_FILTER.MARGIN;
   const isAltsActive = active === ASSETS_FILTER.ALTS;
-  const isEthActive = active === ASSETS_FILTER.ETH;
-  const isXPRActive = active === ASSETS_FILTER.XPR;
-  const isTrxActive = active === ASSETS_FILTER.TRX;
 
   return (
     <div className="market-groups">
@@ -69,7 +71,14 @@ const MarketGroups = ({ setAssetFilter, filter }: any) => {
         BTC
       </button>
 
-      <select
+      <button 
+        className={`market-groups__btn ${isAltsActive ? 'active-btn' : ''}`}
+        onClick={setALTSParentMarket}
+      >
+        ALTS
+      </button>
+
+      {/* <select
         className={`market-group-select ${isAltsActive ? 'active-btn' : ''}`}
         name="select" 
         onChange={handleALTSChange}
@@ -79,7 +88,7 @@ const MarketGroups = ({ setAssetFilter, filter }: any) => {
         <option value={ASSETS_FILTER.XPR}>XRP</option> 
         <option value={ASSETS_FILTER.ETH}>ETH</option>
         <option value={ASSETS_FILTER.TRX}>TRX</option>
-      </select>
+      </select> */}
     </div>
   )
 }

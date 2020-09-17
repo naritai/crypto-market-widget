@@ -8,3 +8,15 @@
   text-align: left;
   width: 120px;
 }
+
+.bolded {
+  font-weight: 500;
+}
+
+.growth {
+  color: #57a825;
+}
+
+.loss {
+  color: #cf2862;
+}
