@@ -65,7 +65,7 @@ const setUpdatedMarketData = ({ data }: any) => (dispatch: any, getState: any) =
   }
 
   const updatedAssets = assets.slice();
-  
+
   parsedData.data.forEach((asset: any) => {
     const updatedAssetIdx = assetIndexes[asset.s];
     const { c, l, h, o } = asset;

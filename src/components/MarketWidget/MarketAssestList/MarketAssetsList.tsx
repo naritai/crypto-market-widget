@@ -9,7 +9,8 @@ const mapStateToProps = (state: any) => {
   return {
     assets: state.marketWidget.assets,
     filter: state.marketWidget.filter,
-    searchValue: state.marketWidget.searchValue
+    searchValue: state.marketWidget.searchValue,
+    loading: state.marketWidget.loading,
   }
 };
 
@@ -17,21 +18,25 @@ const mapDispatchToProps = (dispatch: any) => {
   return {};
 }
 
-const MarketAssetsList = ({ assets, filter, searchValue }: any) => {
-  if (!assets.length) {
-    return null;
+const MarketAssetsList = ({ assets, filter, searchValue, loading }: any) => {
+  if (loading) {
+    return (
+      <div className="loading-indicator">
+        Loading data...
+      </div>
+    )
   }
 
   let resolvedAssets = assets;
   if (filter && filter !== ASSETS_FILTER.MARGIN) {
-    resolvedAssets = assets.filter((asset: any) => {
+    resolvedAssets = assets && assets.filter((asset: any) => {
       return asset.pm === filter;
     })
   }
   
   if (searchValue) {
     const lower = searchValue.toLowerCase();
-    resolvedAssets = assets.filter((asset: any) => {
+    resolvedAssets = assets && assets.filter((asset: any) => {
       return asset.s.toLowerCase().includes(lower)
     });
   }
@@ -41,7 +46,7 @@ const MarketAssetsList = ({ assets, filter, searchValue }: any) => {
       <MarketAssetsListHeader />
       <div className="market-assets-list">
         {
-          resolvedAssets.map((item: any, idx: any) => {
+          resolvedAssets && resolvedAssets.map((item: any, idx: any) => {
             return (
               <MarketAssetsListItem key={idx} asset={item} />
             )
