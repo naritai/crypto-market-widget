@@ -5,7 +5,8 @@ const initialState = {
   error: false,
   assets: [],
   filter: ASSETS_FILTER.MARGIN,
-  assetIndexes: null
+  assetIndexes: null,
+  searchValue: ''
 };
 
 import {
@@ -14,7 +15,8 @@ import {
   FETCH_MARKET_DATA_SUCCESS,
   SET_ASSET_FILTER,
   SET_UPDATED_MARKET_DATA,
-  SAVE_MARKET_ASSETS_INDEXES
+  SAVE_MARKET_ASSETS_INDEXES,
+  SET_SEARCH_ASSET_VALUE
 } from '../../actions';
 
 function marketWidget(state = initialState, action: any) {
@@ -34,7 +36,6 @@ function marketWidget(state = initialState, action: any) {
       };
 
     case FETCH_MARKET_DATA_SUCCESS:
-      console.log(action.payload);
       return {
         ...state,
         loading: false,
@@ -49,8 +50,6 @@ function marketWidget(state = initialState, action: any) {
       };
 
     case SAVE_MARKET_ASSETS_INDEXES:
-
-    console.log('NEW IDXS', action.payload)
       return {
         ...state,
         assetIndexes: action.payload
@@ -60,7 +59,13 @@ function marketWidget(state = initialState, action: any) {
       return {
         ...state,
         assets: action.payload
-      }
+      };
+
+    case SET_SEARCH_ASSET_VALUE:
+      return {
+        ...state,
+        searchValue: action.payload
+      };
 
     default:
       return state;

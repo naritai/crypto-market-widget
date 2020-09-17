@@ -1,23 +1,15 @@
 import React from "react";
 import { connect } from 'react-redux';
 import MarketAssetsListItem from '../MarketAssetsListItem';
-import { List } from '@material-ui/core';
 import "./market-assets-list.css";
 import MarketAssetsListHeader from './MarketAssetsListHeader';
-import { makeStyles } from '@material-ui/core/styles';
 import { ASSETS_FILTER } from '../../../utils/marketWidget';
-
-const styles = makeStyles({
-  root: {
-    height: '370px',
-    overflow: 'auto'
-  }
-});
 
 const mapStateToProps = (state: any) => {
   return {
     assets: state.marketWidget.assets,
     filter: state.marketWidget.filter,
+    searchValue: state.marketWidget.searchValue
   }
 };
 
@@ -25,12 +17,10 @@ const mapDispatchToProps = (dispatch: any) => {
   return {};
 }
 
-const MarketAssetsList = ({ assets, filter }: any) => {
+const MarketAssetsList = ({ assets, filter, searchValue }: any) => {
   if (!assets.length) {
     return null;
   }
-
-  const classes = styles();
 
   let resolvedAssets = assets;
   if (filter && filter !== ASSETS_FILTER.MARGIN) {
@@ -38,11 +28,18 @@ const MarketAssetsList = ({ assets, filter }: any) => {
       return asset.pm === filter;
     })
   }
+  
+  if (searchValue) {
+    const lower = searchValue.toLowerCase();
+    resolvedAssets = assets.filter((asset: any) => {
+      return asset.s.toLowerCase().includes(lower)
+    });
+  }
 
   return (
-    <div className="market-assets-list">
+    <div>
       <MarketAssetsListHeader />
-      <List dense classes={{ root: classes.root }}>
+      <div className="market-assets-list">
         {
           resolvedAssets.map((item: any, idx: any) => {
             return (
@@ -50,7 +47,7 @@ const MarketAssetsList = ({ assets, filter }: any) => {
             )
           })
         }
-      </List>
+      </div>
     </div>
   )
 }

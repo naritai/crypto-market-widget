@@ -1,5 +1,4 @@
-import { Button, FormControl, Select, MenuItem, InputBase } from '@material-ui/core';
-import React from "react";
+import React, { useState } from "react";
 import "./market-groups.css";
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
@@ -8,7 +7,8 @@ import { setAssetFilter } from '../../../store/actions';
 
 const mapStateToProps = (state: any) => {
   return {
-    filter: state.marketWidget.filter
+    filter: state.marketWidget.filter,
+    active: state.marketWidget.activeMarketGroup
   }
 }
 
@@ -16,59 +16,70 @@ const mapDispatchToProps = (dispatch: any) => {
   return bindActionCreators({ setAssetFilter }, dispatch);
 };
 
-const MarketGroups = ({ setAssetFilter }: any) => {
+const MarketGroups = ({ setAssetFilter, filter }: any) => {
+  const [active, setActive] = useState(filter);
+
   const setBTCParentMarket = () => {
+    setActive(ASSETS_FILTER.BTC);
     setAssetFilter(ASSETS_FILTER.BTC);
   };
 
   const setBNBParentMarket = () => {
+    setActive(ASSETS_FILTER.BNB);
     setAssetFilter(ASSETS_FILTER.BNB);
   };
 
   const setMargin = () => {
+    setActive(ASSETS_FILTER.MARGIN);
     setAssetFilter(ASSETS_FILTER.MARGIN);
   };
 
   const handleALTSChange = (event: any) => {
-    console.log(event.target.value)
+    const { value } = event.target;
+    setActive(value);
+    setAssetFilter(value);
   }
+
+  const isBtcActive = active === ASSETS_FILTER.BTC;
+  const isBnbActive = active === ASSETS_FILTER.BNB;
+  const isMarginActive = active === ASSETS_FILTER.MARGIN;
+  const isAltsActive = active === ASSETS_FILTER.ALTS;
+  const isEthActive = active === ASSETS_FILTER.ETH;
+  const isXPRActive = active === ASSETS_FILTER.XPR;
+  const isTrxActive = active === ASSETS_FILTER.TRX;
 
   return (
     <div className="market-groups">
-      <Button color="primary" onClick={setMargin}>
+      <button 
+        className={`market-groups__btn ${isMarginActive ? 'active-btn' : ''}`}
+        onClick={setMargin}
+      >
         Margin
-      </Button>
-
-      <Button onClick={setBNBParentMarket}>
+      </button>
+      <button 
+        className={`market-groups__btn ${isBnbActive ? 'active-btn' : ''}`}
+        onClick={setBNBParentMarket}
+      >
         BNB
-      </Button>
-
-      <Button onClick={setBTCParentMarket}>
+      </button>
+      <button 
+        className={`market-groups__btn ${isBtcActive ? 'active-btn' : ''}`}
+        onClick={setBTCParentMarket}
+      >
         BTC
-      </Button>
+      </button>
 
-      {/* <Button>
-        ALTS
-      </Button> */}
-
-      <FormControl>
-        <Select
-          labelId="demo-customized-select-label"
-          id="demo-customized-select"
-          value={ASSETS_FILTER.ALTS}
-          onChange={handleALTSChange}
-          input={<InputBase />}
-        >
-          <MenuItem value={ASSETS_FILTER.ALTS}>ALTS</MenuItem>
-          <MenuItem value={ASSETS_FILTER.XPR}>XPR</MenuItem>
-          <MenuItem value={ASSETS_FILTER.ETH}>ETH</MenuItem>
-          <MenuItem value={ASSETS_FILTER.TRX}>TRX</MenuItem>
-        </Select>
-      </FormControl>
-
-      <Button>
-        USD@
-      </Button>
+      <select
+        className={`market-group-select ${isAltsActive ? 'active-btn' : ''}`}
+        name="select" 
+        onChange={handleALTSChange}
+      >
+        <option value={""}>ALTS</option> 
+        <option value={ASSETS_FILTER.ALTS}>ALTS</option> 
+        <option value={ASSETS_FILTER.XPR}>XRP</option> 
+        <option value={ASSETS_FILTER.ETH}>ETH</option>
+        <option value={ASSETS_FILTER.TRX}>TRX</option>
+      </select>
     </div>
   )
 }

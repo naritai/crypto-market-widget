@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.market-widget {
+  background-color: white;
+
+}
+
+.close-connection-btn {
+  margin: 12px;
+  margin-left: 0;
+  width: 180px;
+  height: 35px;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  outline: none;
+  border: 2px solid transparent;
+  background-color: white;
+  color: #4C2719;
+  text-transform: uppercase;
+}
+
+.close-connection-btn:hover {
+  background-color: #f7bebd;
+  
+}
+.close-connection-btn:hover:active {
+  background-color: #fc9a98;
+}

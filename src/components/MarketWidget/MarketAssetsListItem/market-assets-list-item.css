@@ -1,0 +1,10 @@
+.market-assets-list-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.list-item__part {
+  text-align: left;
+  width: 120px;
+}

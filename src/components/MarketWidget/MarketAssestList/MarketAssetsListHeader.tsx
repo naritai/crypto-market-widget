@@ -1,28 +1,11 @@
-import { ListItem, ListItemText, Typography } from '@material-ui/core';
 import React from "react";
 
 const MarketAssetsListHeader = () => {
   return (
     <div className="market-assets-list-header">
-      <ListItem dense divider>
-        <ListItemText>
-          <Typography variant="h5" gutterBottom>
-            Pair
-          </Typography>
-        </ListItemText>
-
-        <ListItemText>
-          <Typography variant="h5" gutterBottom>
-            Last price
-          </Typography>
-        </ListItemText>
-
-        <ListItemText>
-          <Typography variant="h5" gutterBottom>
-            Change
-          </Typography>
-        </ListItemText>
-      </ListItem>
+      <h3> Pair </h3>
+      <h3> Last price </h3>
+      <h3> Change </h3>
     </div>
   )
 }

@@ -5,6 +5,7 @@ export const FETCH_MARKET_DATA_SUCCESS = 'FETCH_MARKET_DATA_SUCCESS';
 export const SET_ASSET_FILTER = 'SET_ASSET_FILTER';
 export const SET_UPDATED_MARKET_DATA = 'SET_UPDATED_MARKET_DATA';
 export const SAVE_MARKET_ASSETS_INDEXES = 'SAVE_MARKET_ASSETS_INDEXES';
+export const SET_SEARCH_ASSET_VALUE = 'SET_SEARCH_ASSET_VALUE';
 
 const fetchMarketDataRequest = () => ({ type: FETCH_MARKET_DATA_REQUEST });
 const fetchMarketDataFailure = () => ({ type: FETCH_MARKET_DATA_FAILURE });
@@ -80,10 +81,18 @@ const setUpdatedMarketData = ({ data }: any) => (dispatch: any, getState: any) =
   })
 };
 
+const setSearchAssetValue = (value: string) => (dispatch: any) => {
+  dispatch({
+    type: SET_SEARCH_ASSET_VALUE,
+    payload: value
+  })
+};
+
 export { 
   fetchMarketData, 
   setAssetFilter,
-  setUpdatedMarketData
+  setUpdatedMarketData,
+  setSearchAssetValue
 };
 
 

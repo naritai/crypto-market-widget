@@ -1,43 +1,55 @@
-import { Radio, TextField, RadioGroup, FormControlLabel, FormControl } from '@material-ui/core';
-import React from "react";
+import React, { useState } from "react";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { setSearchAssetValue } from '../../../store/actions';
+import _ from "lodash";
 import "./market-search-panel.css";
 
+const MarketSearchPanel = ({ searchValue, setSearchAssetValue }: any) => {
+  const [search, setSearch] = useState<string>(searchValue);
+  
+  const handleSearch = (event: any)=> {
+    const { value } = event.target;
+    setSearch(value);
+    setSearchDebounced(value);
+  };
 
-const MarketSearchPanel = () => {
+  const setSearchDebounced = _.debounce(setSearchAssetValue, 500);
+
   return (
     <div className="market-search-panel">
-      <TextField 
-        id="standard-basic" 
-        margin="dense"
+      <input 
+        type="text" 
         placeholder="Search"
-        fullWidth
+        value={search}
+        className="search-asset-input"
+        onChange={handleSearch}
       />
     
-      <FormControl component="fieldset" className="radio-group-wrapper">
-        <RadioGroup 
-            aria-label="gender" 
-            name="gender1" 
-            value={"Change"} 
-            onChange={() => {}}
-            row
-          >
-            <FormControlLabel 
-              value="Change" 
-              control={<Radio />} 
-              label="Change"
-              labelPlacement="start"
-            />
-            <FormControlLabel 
-              value="Volume" 
-              disabled 
-              control={<Radio />} 
-              label="Volume"
-              labelPlacement="start"
-            />
-          </RadioGroup>
-      </FormControl>
+      <label>
+        Change
+        <input type="radio" />
+      </label>
+
+      <label>
+        Volume
+        <input type="radio" />
+      </label>
     </div>
   )
+};
+
+const mapStateToProps = (state: any) => {
+  return {
+    searchValue: state.marketWidget.searchValue
+  }
+};
+
+const mapDispatchToProps = (dispatch: any) => {
+  return bindActionCreators({ setSearchAssetValue }, dispatch)
 }
 
-export default MarketSearchPanel;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MarketSearchPanel);

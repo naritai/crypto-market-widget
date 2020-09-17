@@ -1,0 +1,16 @@
+.market-assets-list {
+  height: 300px;
+  overflow: auto;
+}
+
+.market-assets-list-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  padding-right: 20px;
+}
+
+.market-assets-list-header h3 {
+  width: 120px;
+  color: #4C2719;
+}
