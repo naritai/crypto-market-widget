@@ -57,7 +57,6 @@ function marketWidget(state = initialState, action: any) {
       };
     
     case SET_UPDATED_MARKET_DATA:
-      // const newData
       return {
         ...state,
         assets: action.payload

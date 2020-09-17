@@ -54,31 +54,29 @@ const fetchMarketData = () => async (dispatch: any, getState: any) => {
 };
 
 const setUpdatedMarketData = ({ data }: any) => (dispatch: any, getState: any) => {
+  const parsedData = JSON.parse(data);
+
   const { marketWidget } = getState();
   const { assetIndexes, assets } = marketWidget;
-
-  console.log('state', marketWidget)
 
   if (!assetIndexes) {
     return;
   }
 
-  const assetsCopy = assets.slice();
+  const updatedAssets = assets.slice();
   
-  data.forEach((asset: any) => {
+  parsedData.data.forEach((asset: any) => {
     const updatedAssetIdx = assetIndexes[asset.s];
     const { c, l, h, o } = asset;
-    assetsCopy[updatedAssetIdx] = {
-      ...assetsCopy[updatedAssetIdx],
+    updatedAssets[updatedAssetIdx] = {
+      ...updatedAssets[updatedAssetIdx],
       c, l, h, o
     };
   });
 
-  // console.log('INCOMING', data);
-  // console.log('UPDATED', assetsCopy);
   dispatch({
     type: SET_UPDATED_MARKET_DATA,
-    payload: assetsCopy
+    payload: updatedAssets
   })
 };
 
