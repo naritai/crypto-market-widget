@@ -4,14 +4,17 @@ const initialState = {
   loading: false,
   error: false,
   assets: [],
-  filter: ASSETS_FILTER.MARGIN
+  filter: ASSETS_FILTER.MARGIN,
+  assetIndexes: null
 };
 
 import {
   FETCH_MARKET_DATA_REQUEST,
   FETCH_MARKET_DATA_FAILURE,
   FETCH_MARKET_DATA_SUCCESS,
-  SET_ASSET_FILTER
+  SET_ASSET_FILTER,
+  SET_UPDATED_MARKET_DATA,
+  SAVE_MARKET_ASSETS_INDEXES
 } from '../../actions';
 
 function marketWidget(state = initialState, action: any) {
@@ -31,6 +34,7 @@ function marketWidget(state = initialState, action: any) {
       };
 
     case FETCH_MARKET_DATA_SUCCESS:
+      console.log(action.payload);
       return {
         ...state,
         loading: false,
@@ -42,6 +46,21 @@ function marketWidget(state = initialState, action: any) {
       return {
         ...state,
         filter: action.payload
+      };
+
+    case SAVE_MARKET_ASSETS_INDEXES:
+
+    console.log('NEW IDXS', action.payload)
+      return {
+        ...state,
+        assetIndexes: action.payload
+      };
+    
+    case SET_UPDATED_MARKET_DATA:
+      // const newData
+      return {
+        ...state,
+        assets: action.payload
       }
 
     default:

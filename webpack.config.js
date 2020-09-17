@@ -41,7 +41,8 @@ module.exports = () => {
       }),
       new CleanWebpackPlugin(),
       new webpack.DefinePlugin({
-        'process.env.API_KEY': JSON.stringify(env['API_KEY'])
+        'process.env.REST_API_BASE': JSON.stringify(env['REST_API_BASE']),
+        'process.env.WS_API_BASE': JSON.stringify(env['WS_API_BASE'])
       })
     ],
    

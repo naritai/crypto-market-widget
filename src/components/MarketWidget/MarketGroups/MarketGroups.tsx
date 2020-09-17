@@ -3,8 +3,8 @@ import React from "react";
 import "./market-groups.css";
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
-import { setAssetFilter } from '../../../store/actions';
 import { ASSETS_FILTER } from '../../../utils/marketWidget';
+import { setAssetFilter } from '../../../store/actions';
 
 const mapStateToProps = (state: any) => {
   return {
@@ -16,14 +16,13 @@ const mapDispatchToProps = (dispatch: any) => {
   return bindActionCreators({ setAssetFilter }, dispatch);
 };
 
-const MarketGroups = ({ setAssetFilter, filter }: any) => {
-
+const MarketGroups = ({ setAssetFilter }: any) => {
   const setBTCParentMarket = () => {
-    setAssetFilter(ASSETS_FILTER.BTC)
+    setAssetFilter(ASSETS_FILTER.BTC);
   };
 
   const setBNBParentMarket = () => {
-    setAssetFilter(ASSETS_FILTER.BNB)
+    setAssetFilter(ASSETS_FILTER.BNB);
   };
 
   const setMargin = () => {
