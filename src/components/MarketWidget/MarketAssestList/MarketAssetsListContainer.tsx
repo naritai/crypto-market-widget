@@ -38,6 +38,8 @@ const MarketAssetsListContainer = ({ marketWidget }: any) => {
     )
   }
 
+  console.log(assets.length)
+
   let resolvedAssets = assets;
   if (filter && filter !== ASSETS_FILTER.MARGIN) {
     resolvedAssets = assets && assets.filter((asset: any) => {
@@ -50,6 +52,14 @@ const MarketAssetsListContainer = ({ marketWidget }: any) => {
     resolvedAssets = resolvedAssets && resolvedAssets.filter((asset: any) => {
       return asset.s.toLowerCase().includes(lower)
     });
+  }
+
+  if (searchValue && resolvedAssets.length === 0) {
+    return (
+      <div className="asset-not-found">
+        Asset is not found
+      </div>
+    )
   }
 
   return <MarketAssetsList assets={resolvedAssets} showMode={showMode} />

@@ -26,7 +26,8 @@
   color: tomato;
 }
 
-.no-data-indicator {
+.no-data-indicator,
+.asset-not-found {
   height: 360px;
   width: 385px;
 }
