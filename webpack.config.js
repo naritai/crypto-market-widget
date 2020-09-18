@@ -78,10 +78,7 @@ module.exports = () => {
     },
 
     resolve: {
-      extensions: ['.ts', '.tsx', '.js', '.jsx'],
-      alias: {
-        "~services": path.resolve(__dirname, 'src/services/')
-      }
+      extensions: ['.ts', '.tsx', '.js', '.jsx']
     },
   }
 };

@@ -4,9 +4,9 @@ const initialState = {
   loading: false,
   error: false,
   assets: [],
-  filter: ASSETS_FILTER.MARGIN,
   assetIndexes: null,
   searchValue: '',
+  filter: ASSETS_FILTER.MARGIN,
   showMode: ASSETS_MODE.CHANGE
 };
 

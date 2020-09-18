@@ -1,0 +1,1 @@
+export const WS_URL = `${process.env.WS_API_BASE}stream?streams=!miniTicker@arr`;

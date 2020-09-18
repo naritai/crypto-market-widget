@@ -1,3 +1,3 @@
-import MarketAssetsList from "./MarketAssetsList";
+import MarketAssetsList from "./MarketAssetsListContainer";
 
 export default MarketAssetsList;

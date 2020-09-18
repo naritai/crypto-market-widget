@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 export const WebSocketContext = React.createContext(null);
 
 type Props = {

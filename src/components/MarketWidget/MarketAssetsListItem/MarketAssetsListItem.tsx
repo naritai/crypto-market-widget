@@ -22,4 +22,4 @@ const MarketAssetsListItem = ({ asset, showMode }: any) => {
   )
 }
 
-export default MarketAssetsListItem;
+export default React.memo(MarketAssetsListItem);

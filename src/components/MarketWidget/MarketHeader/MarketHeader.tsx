@@ -12,4 +12,4 @@ const MarketHeader = () => {
   )
 };
 
-export default MarketHeader;
+export default React.memo(MarketHeader);

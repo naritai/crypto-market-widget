@@ -3,24 +3,41 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { setSearchAssetValue, setAssetsShowMode } from '../../../store/actions';
 import _ from "lodash";
-import "./market-search-panel.css";
 import { ASSETS_MODE } from '../../../utils/marketWidget';
+import "./market-search-panel.css";
 
-const MarketSearchPanel = ({ 
-    searchValue, 
-    showMode, 
-    setSearchAssetValue, 
-    setAssetsShowMode 
-  }: any) => {
+const mapStateToProps = (state: any) => {
+  return {
+    state: {
+      searchValue: state.marketWidget.searchValue,
+      showMode: state.marketWidget.showMode,
+    }
+  }
+};
+
+const actions = {
+  setSearchAssetValue, 
+  setAssetsShowMode
+};
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    actions: bindActionCreators(actions, dispatch)
+  }
+};
+
+const MarketSearchPanel = ({ state, actions }: any) => {
+  const { searchValue, showMode } = state; 
+  const { setSearchAssetValue, setAssetsShowMode } = actions;
   const [search, setSearch] = useState<string>(searchValue);
   
   const handleSearch = (event: any)=> {
     const { value } = event.target;
     setSearch(value);
-    setSearchDebounced(value);
+    setSearchValueDebounced(value);
   };
 
-  const setSearchDebounced = _.debounce(setSearchAssetValue, 500);
+  const setSearchValueDebounced = _.debounce(setSearchAssetValue, 500);
 
   const changeAssetMode = (event: any) => {
     const { value } = event.target;
@@ -65,17 +82,6 @@ const MarketSearchPanel = ({
     </div>
   )
 };
-
-const mapStateToProps = (state: any) => {
-  return {
-    searchValue: state.marketWidget.searchValue,
-    showMode: state.marketWidget.showMode,
-  }
-};
-
-const mapDispatchToProps = (dispatch: any) => {
-  return bindActionCreators({ setSearchAssetValue, setAssetsShowMode }, dispatch)
-}
 
 export default connect(
   mapStateToProps,

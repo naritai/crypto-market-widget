@@ -1,4 +1,5 @@
 import Axios from 'axios';
+
 export const FETCH_MARKET_DATA_REQUEST = 'FETCH_MARKET_DATA_REQUEST';
 export const FETCH_MARKET_DATA_FAILURE = 'FETCH_MARKET_DATA_FAILURE';
 export const FETCH_MARKET_DATA_SUCCESS = 'FETCH_MARKET_DATA_SUCCESS';
@@ -56,15 +57,14 @@ const fetchMarketData = () => async (dispatch: any, getState: any) => {
 };
 
 const setUpdatedMarketData = ({ data }: any) => (dispatch: any, getState: any) => {
-  const parsedData = JSON.parse(data);
-
+  console.log('setUpdatedMarketData')
   const { marketWidget } = getState();
   const { assetIndexes, assets } = marketWidget;
-
   if (!assetIndexes) {
     return;
   }
 
+  const parsedData = JSON.parse(data);
   const updatedAssets = assets.slice();
 
   parsedData.data.forEach((asset: any) => {
@@ -94,7 +94,7 @@ const setAssetsShowMode = (mode: string) => (dispatch: any) => {
     type: SET_ASSETS_SHOW_MODE,
     payload: mode
   })
-}
+};
 
 export { 
   fetchMarketData, 
@@ -103,14 +103,3 @@ export {
   setSearchAssetValue,
   setAssetsShowMode
 };
-
-
-
-
-
-
-
-
-
-
-
