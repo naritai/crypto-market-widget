@@ -8,7 +8,8 @@
   "scripts": {
     "start": "webpack-dev-server --mode development --open --hot",
     "build": "webpack --mode production",
-    "check-types": "tsc"
+    "check-types": "tsc",
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "@types/jest": "24.0.18",
@@ -37,6 +38,7 @@
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.6.0",
+    "cypress": "^5.2.0",
     "dotenv": "^8.2.0",
     "dotenv-webpack": "^2.0.0",
     "html-webpack-plugin": "^4.3.0",

@@ -1,4 +1,4 @@
-.market-groups {
+.market-navigation {
   width: 100%;
   box-sizing: border-box;
   display: flex;
@@ -7,7 +7,7 @@
   background-color: #CE6C47;
 }
 
-.market-groups__btn {
+.market-navigation__btn {
   padding: 5px;
   width: 90px;
   font-size: 1.1em;
@@ -19,12 +19,12 @@
   text-transform: uppercase;
 }
 
-.market-groups__btn:hover {
+.market-navigation__btn:hover {
   background-color: #E7ECEF;
   cursor: pointer;
 }
 
-.market-groups__btn:hover:active {
+.market-navigation__btn:hover:active {
   background-color: #cee0eb;
   cursor: pointer;
 }

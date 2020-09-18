@@ -1,5 +1,5 @@
 import React from "react";
-import "./market-groups.css";
+import "./market-navigation.css";
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { ASSETS_FILTER } from '../../../utils/marketWidget';
@@ -16,7 +16,7 @@ const mapDispatchToProps = (dispatch: any) => {
   return bindActionCreators({ setAssetFilter }, dispatch);
 };
 
-const MarketGroups = ({ setAssetFilter, filter }: any) => {
+const MarketNavigation = ({ setAssetFilter, filter }: any) => {
   const setBTCParentMarket = () => {
     setAssetFilter(ASSETS_FILTER.BTC);
   };
@@ -39,31 +39,31 @@ const MarketGroups = ({ setAssetFilter, filter }: any) => {
   const isAltsActive = filter === ASSETS_FILTER.ALTS;
 
   return (
-    <div className="market-groups">
+    <div className="market-navigation">
       <button 
-        className={`market-groups__btn ${isMarginActive ? 'active-btn' : ''}`}
+        className={`market-navigation__btn ${isMarginActive ? 'active-btn' : ''}`}
         onClick={setMargin}
       >
-        Margin
+        margin
       </button>
       <button 
-        className={`market-groups__btn ${isBnbActive ? 'active-btn' : ''}`}
+        className={`market-navigation__btn ${isBnbActive ? 'active-btn' : ''}`}
         onClick={setBNBParentMarket}
       >
-        BNB
+        bnb
       </button>
       <button 
-        className={`market-groups__btn ${isBtcActive ? 'active-btn' : ''}`}
+        className={`market-navigation__btn ${isBtcActive ? 'active-btn' : ''}`}
         onClick={setBTCParentMarket}
       >
-        BTC
+        btc
       </button>
 
       <button 
-        className={`market-groups__btn ${isAltsActive ? 'active-btn' : ''}`}
+        className={`market-navigation__btn ${isAltsActive ? 'active-btn' : ''}`}
         onClick={setALTSParentMarket}
       >
-        ALTS
+        alts
       </button>
     </div>
   )
@@ -72,4 +72,4 @@ const MarketGroups = ({ setAssetFilter, filter }: any) => {
 export default connect(
   mapStateToProps, 
   mapDispatchToProps
-)(MarketGroups);
+)(MarketNavigation);
