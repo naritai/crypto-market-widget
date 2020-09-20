@@ -59,7 +59,7 @@ const fetchMarketData = () => async (dispatch: any, getState: any) => {
     const { data: { data } } = payload;
     dispatch(fetchMarketDataSuccess(data));
 
-    if (!assetIndexes) {
+    if (!Object.entries(assetIndexes).length) {
       dispatch(saveMarketAssetIndexes(data));
     }
   } catch (error) {
@@ -69,7 +69,6 @@ const fetchMarketData = () => async (dispatch: any, getState: any) => {
 
 const setUpdatedMarketData = ({ data }: { data: string }) => {
   return (dispatch: any, getState: any): MarketWidgetActionTypes => {
-    
     const { marketWidget } = getState();
     const { assetIndexes, assets } = marketWidget;
   

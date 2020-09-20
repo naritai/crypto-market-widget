@@ -63,7 +63,5 @@ export const MarketAssetsListContainer = () => {
     )
   }
 
-  console.log(resolvedAssets);
-
   return <MarketAssetsList assets={resolvedAssets} showMode={showMode} />
 };

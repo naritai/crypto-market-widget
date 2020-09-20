@@ -58,6 +58,10 @@ export class WebSocketComponent extends Component<Props, State> {
       console.error('Websocket encountered an error :', event.err);
       ws.close();
     };
+
+    setTimeout(() => {
+      that.setState({ isShouldReconnect: false })
+    }, 5000)
   };
 
   check = () => {
