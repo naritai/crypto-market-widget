@@ -10,7 +10,8 @@ export class WebSocketComponent extends Component<Props, any> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      ws: null
+      ws: null,
+      isShouldReconnect: true
     }
   };
 
@@ -51,13 +52,21 @@ export class WebSocketComponent extends Component<Props, any> {
     ws.onerror = (event: any) => {
       console.error('Websocket encountered an error :', event.err);
       ws.close();
-    }
+    };
   };
 
   check = () => {
-    const { ws } = this.state;
-    if (!ws || ws.readyState === WebSocket.CLOSED) {
+    const { ws, isShouldReconnect } = this.state;
+    if ((!ws || ws.readyState === WebSocket.CLOSED) && isShouldReconnect) {
       this.connect();
+    }
+  };
+
+  componentWillUnmount() {
+    const { ws } = this.state;
+    this.setState({ isShouldReconnect: false });
+    if (ws && ws.close) {
+      ws.close();
     }
   }
 
