@@ -57,7 +57,6 @@ const fetchMarketData = () => async (dispatch: any, getState: any) => {
 };
 
 const setUpdatedMarketData = ({ data }: any) => (dispatch: any, getState: any) => {
-  console.log('setUpdatedMarketData')
   const { marketWidget } = getState();
   const { assetIndexes, assets } = marketWidget;
   if (!assetIndexes) {

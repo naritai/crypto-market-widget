@@ -4,7 +4,10 @@ import { bindActionCreators } from 'redux';
 import { setSearchAssetValue, setAssetsShowMode } from '../../../store/actions';
 import _ from "lodash";
 import { ASSETS_MODE } from '../../../utils/marketWidget';
+import { useDebounce } from '../../hooks/useDebounce';
 import "./market-search-panel.css";
+
+const SEARCH_ASSET_DELAY = 500;
 
 const mapStateToProps = (state: any) => {
   return {
@@ -29,15 +32,15 @@ const mapDispatchToProps = (dispatch: any) => {
 const MarketSearchPanelC = ({ state, actions }: any) => {
   const { searchValue, showMode } = state; 
   const { setSearchAssetValue, setAssetsShowMode } = actions;
+
   const [search, setSearch] = useState<string>(searchValue);
+  const setSearchValueDebounced = useDebounce(setSearchAssetValue, SEARCH_ASSET_DELAY);
   
   const handleSearch = (event: any)=> {
     const { value } = event.target;
     setSearch(value);
     setSearchValueDebounced(value);
   };
-
-  const setSearchValueDebounced = _.debounce(setSearchAssetValue, 500);
 
   const changeAssetMode = (event: any) => {
     const { value } = event.target;

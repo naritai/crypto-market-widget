@@ -38,8 +38,6 @@ const MarketAssetsListWrapper = ({ marketWidget }: any) => {
     )
   }
 
-  console.log(assets.length)
-
   let resolvedAssets = assets;
   if (filter && filter !== ASSETS_FILTER.MARGIN) {
     resolvedAssets = assets && assets.filter((asset: any) => {
