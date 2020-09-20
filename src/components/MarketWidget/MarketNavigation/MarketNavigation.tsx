@@ -1,37 +1,30 @@
 import React, { useCallback } from "react";
 import "./market-navigation.css";
-import { connect } from "react-redux";
-import { bindActionCreators } from 'redux';
 import { ASSETS_FILTER } from '../../../utils/marketWidget';
 import { setAssetFilter } from '../../../store/actions';
+import { useSelector, useDispatch } from "react-redux";
 
-const mapStateToProps = (state: any) => {
-  return {
-    filter: state.marketWidget.filter,
-    active: state.marketWidget.activeMarketGroup
-  }
-};
+const filterSelector = (state: any) => state.marketWidget.filter;
 
-const mapDispatchToProps = (dispatch: any) => {
-  return bindActionCreators({ setAssetFilter }, dispatch);
-};
+export const MarketNavigation = () => {
+  const filter = useSelector<any>(filterSelector);
+  const dispatch = useDispatch();
 
-const MarketNavigationC = ({ setAssetFilter, filter }: any) => {
   const setBTCParentMarket = useCallback(() => {
-    setAssetFilter(ASSETS_FILTER.BTC);
-  }, []);
+    dispatch(setAssetFilter(ASSETS_FILTER.BTC));
+  }, [dispatch]);
 
   const setBNBParentMarket = useCallback(() => {
-    setAssetFilter(ASSETS_FILTER.BNB);
-  }, []);
+    dispatch(setAssetFilter(ASSETS_FILTER.BNB));
+  }, [dispatch]);
 
   const setALTSParentMarket = useCallback(() => {
-    setAssetFilter(ASSETS_FILTER.ALTS);
-  }, []);
+    dispatch(setAssetFilter(ASSETS_FILTER.ALTS));
+  }, [dispatch]);
 
   const setMargin = useCallback(() => {
-    setAssetFilter(ASSETS_FILTER.MARGIN);
-  }, []);
+    dispatch(setAssetFilter(ASSETS_FILTER.MARGIN));
+  }, [dispatch]);
 
   const isBtcActive = filter === ASSETS_FILTER.BTC;
   const isBnbActive = filter === ASSETS_FILTER.BNB;
@@ -68,8 +61,3 @@ const MarketNavigationC = ({ setAssetFilter, filter }: any) => {
     </div>
   )
 };
-
-export const MarketNavigation = connect(
-  mapStateToProps, 
-  mapDispatchToProps
-)(MarketNavigationC);

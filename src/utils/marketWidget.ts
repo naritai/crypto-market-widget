@@ -12,3 +12,5 @@ export const ASSETS_MODE = {
   CHANGE: 'CHANGE',
   VOLUME: 'VOLUME'
 };
+
+export const HANDLE_WS_MESSAGE_DELAY = 2000;

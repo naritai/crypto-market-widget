@@ -1,51 +1,36 @@
 import React, { useState, useCallback } from "react";
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { setSearchAssetValue, setAssetsShowMode } from '../../../store/actions';
 import _ from "lodash";
 import { ASSETS_MODE } from '../../../utils/marketWidget';
 import { useDebounce } from '../../hooks/useDebounce';
+import { useSelector, useDispatch } from "react-redux";
+import { SEARCH_ASSET_DELAY } from '../../../utils/marketSeacrhPanel';
 import "./market-search-panel.css";
 
-const SEARCH_ASSET_DELAY = 500;
+const searchValueSelector = (state: any) => state.marketWidget.searchValue;
+const showModeSelector = (state: any) => state.marketWidget.showMode;
 
-const mapStateToProps = (state: any) => {
-  return {
-    state: {
-      searchValue: state.marketWidget.searchValue,
-      showMode: state.marketWidget.showMode,
-    }
-  }
-};
-
-const actions = {
-  setSearchAssetValue, 
-  setAssetsShowMode
-};
-
-const mapDispatchToProps = (dispatch: any) => {
-  return {
-    actions: bindActionCreators(actions, dispatch)
-  }
-};
-
-const MarketSearchPanelC = ({ state, actions }: any) => {
-  const { searchValue, showMode } = state; 
-  const { setSearchAssetValue, setAssetsShowMode } = actions;
+export const MarketSearchPanel = () => {
+  const searchValue = useSelector(searchValueSelector);
+  const showMode = useSelector(showModeSelector);
+  const dispatch = useDispatch();
 
   const [search, setSearch] = useState<string>(searchValue);
-  const setSearchValueDebounced = useDebounce(setSearchAssetValue, SEARCH_ASSET_DELAY);
+  const setSearchValueDebounced = useDebounce(
+    (value: string) => dispatch(setSearchAssetValue(value)),
+    SEARCH_ASSET_DELAY
+  );
   
   const handleSearch = useCallback((event: any) => {
     const { value } = event.target;
     setSearch(value);
-    setSearchValueDebounced(value);
+    setSearchValueDebounced(value)
   }, []);
 
   const changeAssetMode = useCallback((event: any) => {
     const { value } = event.target;
-    setAssetsShowMode(value);
-  }, []);
+    dispatch(setAssetsShowMode(value));
+  }, [dispatch]);
 
   return (
     <div className="market-search-panel">
@@ -85,8 +70,3 @@ const MarketSearchPanelC = ({ state, actions }: any) => {
     </div>
   )
 };
-
-export const MarketSearchPanel = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(MarketSearchPanelC);

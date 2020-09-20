@@ -82,6 +82,8 @@ const setUpdatedMarketData = ({ data }: any) => (dispatch: any, getState: any) =
 };
 
 const setSearchAssetValue = (value: string) => (dispatch: any) => {
+  console.log(value);
+  
   dispatch({
     type: SET_SEARCH_ASSET_VALUE,
     payload: value.trim()

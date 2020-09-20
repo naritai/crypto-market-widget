@@ -2,36 +2,24 @@ import React, { useEffect } from "react";
 import { MarketHeader } from './MarketHeader';
 import { MarketBody } from './MarketBody';
 import { MarketFooter } from './MarketFooter';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { fetchMarketData, setUpdatedMarketData } from '../../store/actions';
 import { WebSocketComponent } from '../WebSocketComponent';
 import { WS_URL } from '../../utils/websoketComponent';
 import { useThrottle } from '../hooks/useThrottle';
-import _ from "lodash";
+import { useDispatch } from "react-redux";
+import { HANDLE_WS_MESSAGE_DELAY } from '../../utils/marketWidget';
 import "./styles.css";
 
-const actions = {
-  fetchMarketData, 
-  setUpdatedMarketData
-};
-
-const HANDLE_WS_MESSAGE_DELAY = 2000;
-
-const mapStateToProps = (state: any) => {
-  return { state }
-};
-
-const mapDispatchToProps = (dispatch: any) => {
-  return bindActionCreators(actions, dispatch);
-};
-
-const MarketWidget = ({ fetchMarketData, setUpdatedMarketData }: any) => {
+export const MarketWidget = () => {
+  const dispatch = useDispatch();
   useEffect(() => {
-    fetchMarketData();
+    dispatch(fetchMarketData());
   }, []);
 
-  const handleWSMessageThrottled = useThrottle(setUpdatedMarketData, HANDLE_WS_MESSAGE_DELAY);
+  const handleWSMessageThrottled = useThrottle(
+    (value: string) => dispatch(setUpdatedMarketData(value)), 
+    HANDLE_WS_MESSAGE_DELAY
+  );
   
   return (
     <WebSocketComponent url={WS_URL} onMessage={handleWSMessageThrottled}>
@@ -43,8 +31,3 @@ const MarketWidget = ({ fetchMarketData, setUpdatedMarketData }: any) => {
     </WebSocketComponent>
   )
 };
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(MarketWidget);

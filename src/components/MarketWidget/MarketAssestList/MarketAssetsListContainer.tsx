@@ -1,14 +1,13 @@
 import React from "react";
-import { connect } from 'react-redux';
 import { ASSETS_FILTER } from '../../../utils/marketWidget';
 import { MarketAssetsList } from './MarketAssetsList';
+import { useSelector } from "react-redux";
 import "./market-assets-list.css";
 
-const mapStateToProps = (state: any) => {
-  return { marketWidget: state.marketWidget }
-};
+const marketWidgetSelector = (state: any) => state.marketWidget;
 
-const MarketAssetsListWrapper = ({ marketWidget }: any) => {
+export const MarketAssetsListContainer = () => {
+  const marketWidget = useSelector(marketWidgetSelector);
   const {
     assets, filter, searchValue, 
     loading, showMode, error
@@ -62,8 +61,3 @@ const MarketAssetsListWrapper = ({ marketWidget }: any) => {
 
   return <MarketAssetsList assets={resolvedAssets} showMode={showMode} />
 };
-
-
-export const MarketAssetsListContainer = connect(
-  mapStateToProps
-)(MarketAssetsListWrapper);
