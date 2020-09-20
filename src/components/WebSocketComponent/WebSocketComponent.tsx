@@ -6,7 +6,7 @@ type Props = {
   onMessage: (event: any) => void;
 };
 
-class WebSocketComponent extends Component<Props, any> {
+export class WebSocketComponent extends Component<Props, any> {
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -69,5 +69,3 @@ class WebSocketComponent extends Component<Props, any> {
     )
   }
 };
-
-export default WebSocketComponent;

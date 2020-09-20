@@ -16,7 +16,7 @@ const mapDispatchToProps = (dispatch: any) => {
   return bindActionCreators({ setAssetFilter }, dispatch);
 };
 
-const MarketNavigation = ({ setAssetFilter, filter }: any) => {
+const MarketNavigationC = ({ setAssetFilter, filter }: any) => {
   const setBTCParentMarket = () => {
     setAssetFilter(ASSETS_FILTER.BTC);
   };
@@ -69,7 +69,7 @@ const MarketNavigation = ({ setAssetFilter, filter }: any) => {
   )
 };
 
-export default connect(
+export const MarketNavigation = connect(
   mapStateToProps, 
   mapDispatchToProps
-)(MarketNavigation);
+)(MarketNavigationC);

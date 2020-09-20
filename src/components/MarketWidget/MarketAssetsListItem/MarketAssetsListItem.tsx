@@ -2,7 +2,7 @@ import React from "react";
 import { ASSETS_MODE } from '../../../utils/marketWidget';
 import "./market-assets-list-item.css";
 
-const MarketAssetsListItem = ({ asset, showMode }: any) => {
+export const MarketAssetsListItem = React.memo(({ asset, showMode }: any) => {
   const { b, pm, c, o, qv } = asset;
 
   const isChange = showMode === ASSETS_MODE.CHANGE;
@@ -20,6 +20,4 @@ const MarketAssetsListItem = ({ asset, showMode }: any) => {
       </span>
     </div>
   )
-}
-
-export default React.memo(MarketAssetsListItem);
+});

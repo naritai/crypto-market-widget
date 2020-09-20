@@ -1,3 +1,3 @@
-import MarketHeader from "./MarketHeader";
+import { MarketHeader } from "./MarketHeader";
 
-export default MarketHeader;
+export { MarketHeader };

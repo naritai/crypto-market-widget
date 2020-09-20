@@ -1,3 +1,3 @@
-import MarketFooter from "./MarketFooter";
+import { MarketFooter } from "./MarketFooter";
 
-export default MarketFooter;
+export { MarketFooter };

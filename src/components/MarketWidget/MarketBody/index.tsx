@@ -1,3 +1,3 @@
-import MarketBody from "./MarketBody";
+import { MarketBody } from "./MarketBody";
 
-export default MarketBody;
+export { MarketBody };

@@ -1,3 +1,3 @@
-import WebSocketComponent from "./WebSocketComponent";
+import { WebSocketComponent } from "./WebSocketComponent";
 
-export default WebSocketComponent;
+export { WebSocketComponent };

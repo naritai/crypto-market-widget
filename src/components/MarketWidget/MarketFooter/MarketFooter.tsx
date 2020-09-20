@@ -2,7 +2,7 @@ import React, { useContext, useCallback } from "react";
 import { WebSocketContext } from "../../WebSocketComponent/WebSocketComponent";
 import "./market-footer.css";
 
-const MarketFooter = () => {
+export const MarketFooter = React.memo(() => {
   const websocket = useContext<any>(WebSocketContext);
 
   const closeConnection = useCallback(() => {
@@ -18,6 +18,4 @@ const MarketFooter = () => {
       </button>
     </div>
   )
-}
-
-export default React.memo(MarketFooter);
+});

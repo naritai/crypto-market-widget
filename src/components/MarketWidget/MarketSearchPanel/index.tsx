@@ -1,3 +1,3 @@
-import MarketSearchPanel from "./MarketSearchPanel";
+import { MarketSearchPanel } from "./MarketSearchPanel";
 
-export default MarketSearchPanel;
+export { MarketSearchPanel };

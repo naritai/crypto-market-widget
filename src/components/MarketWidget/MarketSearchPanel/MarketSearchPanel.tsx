@@ -26,7 +26,7 @@ const mapDispatchToProps = (dispatch: any) => {
   }
 };
 
-const MarketSearchPanel = ({ state, actions }: any) => {
+const MarketSearchPanelC = ({ state, actions }: any) => {
   const { searchValue, showMode } = state; 
   const { setSearchAssetValue, setAssetsShowMode } = actions;
   const [search, setSearch] = useState<string>(searchValue);
@@ -83,7 +83,7 @@ const MarketSearchPanel = ({ state, actions }: any) => {
   )
 };
 
-export default connect(
+export const MarketSearchPanel = connect(
   mapStateToProps,
   mapDispatchToProps
-)(MarketSearchPanel);
+)(MarketSearchPanelC);

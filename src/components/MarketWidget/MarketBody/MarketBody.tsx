@@ -1,13 +1,11 @@
 import React from "react";
-import MarketAssetsListContainer from '../MarketAssestList';
+import { MarketAssetsListContainer } from '../MarketAssestList';
 import "./market-body.css";
 
-const MarketBody = () => {
+export const MarketBody = React.memo(() => {
   return (
     <div className="market-body">
       <MarketAssetsListContainer />
     </div>
   )
-};
-
-export default React.memo(MarketBody);
+});

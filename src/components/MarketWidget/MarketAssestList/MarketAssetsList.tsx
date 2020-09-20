@@ -1,8 +1,8 @@
 import React from "react";
-import MarketAssetsListItem from '../MarketAssetsListItem';
+import { MarketAssetsListItem } from '../MarketAssetsListItem';
 import "./market-assets-list.css";
 
-const MarketAssetsList = ({ assets, showMode }: any) => {
+export const MarketAssetsList = ({ assets, showMode }: any) => {
   return (
     <div className="market-assets-list">
       {
@@ -15,5 +15,3 @@ const MarketAssetsList = ({ assets, showMode }: any) => {
     </div>
   )
 };
-
-export default MarketAssetsList;

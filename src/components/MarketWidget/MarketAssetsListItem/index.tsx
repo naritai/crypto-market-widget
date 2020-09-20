@@ -1,3 +1,3 @@
-import MarketAssetsListItem from "./MarketAssetsListItem";
+import { MarketAssetsListItem } from "./MarketAssetsListItem";
 
-export default MarketAssetsListItem;
+export { MarketAssetsListItem };

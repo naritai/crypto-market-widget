@@ -1,3 +1,3 @@
-import MarketNavigation from "./MarketNavigation";
+import { MarketNavigation } from "./MarketNavigation";
 
-export default MarketNavigation;
+export { MarketNavigation };

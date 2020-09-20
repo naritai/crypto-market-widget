@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
-import MarketHeader from './MarketHeader';
-import MarketBody from './MarketBody';
-import MarketFooter from './MarketFooter';
+import { MarketHeader } from './MarketHeader';
+import { MarketBody } from './MarketBody';
+import { MarketFooter } from './MarketFooter';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchMarketData, setUpdatedMarketData } from '../../store/actions';
-import WebSocketComponent from '../WebSocketComponent';
+import { WebSocketComponent } from '../WebSocketComponent';
 import { WS_URL } from '../../utils/websoketComponent';
 import _ from "lodash";
 import "./styles.css";

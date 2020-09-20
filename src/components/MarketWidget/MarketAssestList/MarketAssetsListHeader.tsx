@@ -1,7 +1,7 @@
 import React from "react";
 import { ASSETS_MODE } from '../../../utils/marketWidget';
 
-const MarketAssetsListHeader = ({ showMode }: any) => {
+export const MarketAssetsListHeader = ({ showMode }: any) => {
   return (
     <div className="market-assets-list-header">
       <h3> Pair </h3>
@@ -9,6 +9,4 @@ const MarketAssetsListHeader = ({ showMode }: any) => {
       <h3> {`${showMode === ASSETS_MODE.CHANGE ? 'Change' : 'Volume' }`} </h3>
     </div>
   )
-}
-
-export default MarketAssetsListHeader;
+};
