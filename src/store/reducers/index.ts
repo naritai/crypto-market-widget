@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
-import marketWidget from './marketWidget';
+import { marketWidget } from './marketWidget';
 
-export default combineReducers({
+export const rootReducer = combineReducers({
   marketWidget
 });
+
+export type RootState = ReturnType<typeof rootReducer>;

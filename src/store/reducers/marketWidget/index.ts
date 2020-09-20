@@ -1,10 +1,12 @@
+import { MarketWidgetState } from './types';
+import { MarketWidgetActionTypes } from './../../actions/marketWidget/types';
 import { ASSETS_FILTER, ASSETS_MODE } from '../../../utils/marketWidget';
 
-const initialState = {
+const initialState: MarketWidgetState = {
   loading: false,
   error: false,
   assets: [],
-  assetIndexes: null,
+  assetIndexes: {},
   searchValue: '',
   filter: ASSETS_FILTER.MARGIN,
   showMode: ASSETS_MODE.CHANGE
@@ -19,9 +21,9 @@ import {
   SAVE_MARKET_ASSETS_INDEXES,
   SET_SEARCH_ASSET_VALUE,
   SET_ASSETS_SHOW_MODE
-} from '../../actions';
+} from '../../actions/marketWidget/actionTypes';
 
-function marketWidget(state = initialState, action: any) {
+export function marketWidget(state = initialState, action: MarketWidgetActionTypes) {
   switch (action.type) {
     case FETCH_MARKET_DATA_REQUEST:
       return {
@@ -79,5 +81,3 @@ function marketWidget(state = initialState, action: any) {
       return state;
   }
 };
-
-export default marketWidget;

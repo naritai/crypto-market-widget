@@ -1,1 +1,1 @@
-export const SEARCH_ASSET_DELAY = 500;
+export const SEARCH_ASSET_DELAY: number = 500;
