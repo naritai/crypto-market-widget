@@ -1,6 +1,6 @@
 import React from "react";
 import { MarketAssetsListContainer } from '../MarketAssestList';
-import "./market-body.css";
+import "./market-body.scss";
 
 export const MarketBody = React.memo(() => {
   return (

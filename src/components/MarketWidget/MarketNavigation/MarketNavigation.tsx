@@ -1,10 +1,10 @@
 import React, { useCallback } from "react";
-import "./market-navigation.css";
 import { ASSETS_FILTER } from '../../../utils/marketWidget';
 import { setAssetFilter } from '../../../store/actions/marketWidget';
 import { useSelector, useDispatch } from "react-redux";
 import { marketWidgetSelector } from '../../../store/selectors/marketWidget';
 import { RootState } from '../../../store/reducers';
+import "./market-navigation.scss";
 
 const filterSelector = (state: RootState) => marketWidgetSelector(state).filter;
 

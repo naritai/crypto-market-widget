@@ -1,7 +1,7 @@
 import React from "react";
 import { Asset, ShowModeInterface } from '../../../store/reducers/marketWidget/types';
 import { ASSETS_MODE } from '../../../utils/marketWidget';
-import "./market-assets-list-item.css";
+import "./market-assets-list-item.scss";
 
 type Props = {
   asset: Asset;

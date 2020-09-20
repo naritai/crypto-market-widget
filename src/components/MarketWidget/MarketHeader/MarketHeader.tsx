@@ -1,7 +1,7 @@
 import React from "react";
 import { MarketNavigation } from '../MarketNavigation';
 import { MarketSearchPanel } from '../MarketSearchPanel';
-import "./market-header.css";
+import "./market-header.scss";
 
 export const MarketHeader = React.memo(() => {
   return (

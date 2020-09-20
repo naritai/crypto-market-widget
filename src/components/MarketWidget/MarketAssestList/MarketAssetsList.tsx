@@ -1,7 +1,7 @@
 import React from "react";
 import { MarketAssetsListItem } from '../MarketAssetsListItem';
 import { Asset, ShowModeInterface } from "../../../store/reducers/marketWidget/types";
-import "./market-assets-list.css";
+import "./market-assets-list.scss";
 
 interface Props {
   assets: Asset[],

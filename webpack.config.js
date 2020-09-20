@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const dotenv = require('dotenv');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = () => {
   const env = dotenv.config().parsed;
@@ -43,11 +44,30 @@ module.exports = () => {
       new webpack.DefinePlugin({
         'process.env.REST_API_BASE': JSON.stringify(env['REST_API_BASE']),
         'process.env.WS_API_BASE': JSON.stringify(env['WS_API_BASE'])
+      }),
+      new MiniCssExtractPlugin({
+        filename: "bundle.css"
       })
     ],
    
     module: {
       rules: [
+        {
+          test: /\.s[ac]ss$/i,
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                htr: true,
+                reloadAll: true
+              }
+            },
+            // Translates CSS into CommonJS
+            'css-loader',
+            // Compiles Sass to CSS
+            'sass-loader',
+          ]
+        },
         {
           test: /\.(ts|js)x?$/,
           exclude: /node_modules/,
@@ -55,12 +75,6 @@ module.exports = () => {
               loader: 'babel-loader'
           },
         },
-        // css-loader to bundle all the css files into one file 
-        // style-loader to add all the styles inside the style tag of the document
-        {
-          test: /\.css$/,
-          use: ['style-loader', 'css-loader']
-        }
       ]
     },
 

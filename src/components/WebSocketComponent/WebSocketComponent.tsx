@@ -9,7 +9,7 @@ type Props = {
 type State = {
   ws: WebSocket | null;
   isShouldReconnect: boolean;
-}
+};
 
 export class WebSocketComponent extends Component<Props, State> {
   constructor(props: Props) {

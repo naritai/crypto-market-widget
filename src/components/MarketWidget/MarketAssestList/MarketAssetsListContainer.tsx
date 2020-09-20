@@ -3,7 +3,7 @@ import { ASSETS_FILTER } from '../../../utils/marketWidget';
 import { MarketAssetsList } from './MarketAssetsList';
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/reducers/index";
-import "./market-assets-list.css";
+import "./market-assets-list.scss";
 import { Asset } from '../../../store/reducers/marketWidget/types';
 
 const marketWidgetSelector = (state: RootState) => state.marketWidget;
@@ -39,6 +39,8 @@ export const MarketAssetsListContainer = () => {
     )
   }
 
+  
+
   let resolvedAssets = assets;
   if (filter && filter !== ASSETS_FILTER.MARGIN) {
     resolvedAssets = assets && assets.filter((asset: Asset) => {
@@ -60,6 +62,8 @@ export const MarketAssetsListContainer = () => {
       </div>
     )
   }
+
+  console.log(resolvedAssets);
 
   return <MarketAssetsList assets={resolvedAssets} showMode={showMode} />
 };

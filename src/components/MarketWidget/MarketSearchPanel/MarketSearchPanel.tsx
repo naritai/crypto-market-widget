@@ -6,8 +6,8 @@ import { useDebounce } from '../../../hooks/useDebounce';
 import { useSelector, useDispatch } from "react-redux";
 import { SEARCH_ASSET_DELAY } from '../../../utils/marketSeacrhPanel';
 import { marketWidgetSelector } from '../../../store/selectors/marketWidget';
-import "./market-search-panel.css";
 import { RootState } from '../../../store/reducers';
+import "./market-search-panel.scss";
 
 const searchValueSelector = (state: RootState) => marketWidgetSelector(state).searchValue;
 const showModeSelector = (state: RootState) => marketWidgetSelector(state).showMode;

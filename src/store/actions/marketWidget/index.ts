@@ -1,8 +1,8 @@
 import { 
   Asset,
-  AssetFilter,
+  AssetFilterInterface,
   AssetIndex,
-  ShowMode,
+  ShowModeInterface,
   AssetUpdated
 } from './../../reducers/marketWidget/types';
 import { MarketWidgetActionTypes } from "./types";
@@ -27,7 +27,7 @@ const fetchMarketDataSuccess = (assets: Asset[]): MarketWidgetActionTypes => {
   }
 };
 
-const setAssetFilter = (filter: AssetFilter | string) => (dispatch: any): MarketWidgetActionTypes => {
+const setAssetFilter = (filter: AssetFilterInterface) => (dispatch: any): MarketWidgetActionTypes => {
   return dispatch({
     type: SET_ASSET_FILTER,
     payload: filter
@@ -69,6 +69,7 @@ const fetchMarketData = () => async (dispatch: any, getState: any) => {
 
 const setUpdatedMarketData = ({ data }: { data: string }) => {
   return (dispatch: any, getState: any): MarketWidgetActionTypes => {
+    
     const { marketWidget } = getState();
     const { assetIndexes, assets } = marketWidget;
   
@@ -98,7 +99,7 @@ const setSearchAssetValue = (value: string) => (dispatch: any): MarketWidgetActi
   })
 };
 
-const setAssetsShowMode = (mode: ShowMode | string) => (dispatch: any): MarketWidgetActionTypes => {
+const setAssetsShowMode = (mode: ShowModeInterface) => (dispatch: any): MarketWidgetActionTypes => {
   return dispatch({
     type: SET_ASSETS_SHOW_MODE,
     payload: mode

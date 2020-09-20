@@ -1,6 +1,6 @@
 import React, { useContext, useCallback } from "react";
 import { WebSocketContext } from "../../WebSocketComponent/WebSocketComponent";
-import "./market-footer.css";
+import "./market-footer.scss";
 
 export const MarketFooter = React.memo(() => {
   const websocket = useContext(WebSocketContext);
