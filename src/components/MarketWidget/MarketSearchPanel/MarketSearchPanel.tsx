@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { setSearchAssetValue, setAssetsShowMode } from '../../../store/actions';
@@ -36,16 +36,16 @@ const MarketSearchPanelC = ({ state, actions }: any) => {
   const [search, setSearch] = useState<string>(searchValue);
   const setSearchValueDebounced = useDebounce(setSearchAssetValue, SEARCH_ASSET_DELAY);
   
-  const handleSearch = (event: any)=> {
+  const handleSearch = useCallback((event: any) => {
     const { value } = event.target;
     setSearch(value);
     setSearchValueDebounced(value);
-  };
+  }, []);
 
-  const changeAssetMode = (event: any) => {
+  const changeAssetMode = useCallback((event: any) => {
     const { value } = event.target;
     setAssetsShowMode(value);
-  };
+  }, []);
 
   return (
     <div className="market-search-panel">

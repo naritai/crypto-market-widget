@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import "./market-navigation.css";
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
@@ -17,21 +17,21 @@ const mapDispatchToProps = (dispatch: any) => {
 };
 
 const MarketNavigationC = ({ setAssetFilter, filter }: any) => {
-  const setBTCParentMarket = () => {
+  const setBTCParentMarket = useCallback(() => {
     setAssetFilter(ASSETS_FILTER.BTC);
-  };
+  }, []);
 
-  const setBNBParentMarket = () => {
+  const setBNBParentMarket = useCallback(() => {
     setAssetFilter(ASSETS_FILTER.BNB);
-  };
+  }, []);
 
-  const setALTSParentMarket = () => {
+  const setALTSParentMarket = useCallback(() => {
     setAssetFilter(ASSETS_FILTER.ALTS);
-  };
+  }, []);
 
-  const setMargin = () => {
+  const setMargin = useCallback(() => {
     setAssetFilter(ASSETS_FILTER.MARGIN);
-  };
+  }, []);
 
   const isBtcActive = filter === ASSETS_FILTER.BTC;
   const isBnbActive = filter === ASSETS_FILTER.BNB;
