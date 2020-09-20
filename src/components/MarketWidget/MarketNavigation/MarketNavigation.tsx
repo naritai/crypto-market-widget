@@ -4,11 +4,12 @@ import { ASSETS_FILTER } from '../../../utils/marketWidget';
 import { setAssetFilter } from '../../../store/actions/marketWidget';
 import { useSelector, useDispatch } from "react-redux";
 import { marketWidgetSelector } from '../../../store/selectors/marketWidget';
+import { RootState } from '../../../store/reducers';
 
-const filterSelector = (state: any) => marketWidgetSelector(state).filter;
+const filterSelector = (state: RootState) => marketWidgetSelector(state).filter;
 
 export const MarketNavigation = () => {
-  const filter = useSelector<any>(filterSelector);
+  const filter = useSelector(filterSelector);
   const dispatch = useDispatch();
 
   const setBTCParentMarket = useCallback(() => {

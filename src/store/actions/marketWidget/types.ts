@@ -34,8 +34,6 @@ export interface saveMarketAssetIndexesAction {
   payload: AssetIndex;
 };
 
-export interface fetchMarketDataAction {};
-
 export interface setUpdatedMarketDataAction {
   type: typeof SET_UPDATED_MARKET_DATA;
   payload: Asset[];

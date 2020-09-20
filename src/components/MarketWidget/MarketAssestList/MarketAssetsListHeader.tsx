@@ -1,7 +1,12 @@
 import React from "react";
 import { ASSETS_MODE } from '../../../utils/marketWidget';
+import { ShowModeInterface } from "../../../store/reducers/marketWidget/types";
 
-export const MarketAssetsListHeader = ({ showMode }: any) => {
+type Props = {
+  showMode: keyof ShowModeInterface;
+};
+
+export const MarketAssetsListHeader = ({ showMode }: Props) => {
   return (
     <div className="market-assets-list-header">
       <h3> Pair </h3>

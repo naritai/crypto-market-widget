@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, ChangeEvent } from "react";
 import { setSearchAssetValue, setAssetsShowMode } from '../../../store/actions/marketWidget';
 import _ from "lodash";
 import { ASSETS_MODE } from '../../../utils/marketWidget';
@@ -7,9 +7,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { SEARCH_ASSET_DELAY } from '../../../utils/marketSeacrhPanel';
 import { marketWidgetSelector } from '../../../store/selectors/marketWidget';
 import "./market-search-panel.css";
+import { RootState } from '../../../store/reducers';
 
-const searchValueSelector = (state: any) => marketWidgetSelector(state).searchValue;
-const showModeSelector = (state: any) => marketWidgetSelector(state).showMode;
+const searchValueSelector = (state: RootState) => marketWidgetSelector(state).searchValue;
+const showModeSelector = (state: RootState) => marketWidgetSelector(state).showMode;
 
 export const MarketSearchPanel = () => {
   const searchValue = useSelector(searchValueSelector);
@@ -22,13 +23,13 @@ export const MarketSearchPanel = () => {
     SEARCH_ASSET_DELAY
   );
   
-  const handleSearch = useCallback((event: any) => {
+  const handleSearch = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
     setSearch(value);
     setSearchValueDebounced(value)
   }, []);
 
-  const changeAssetMode = useCallback((event: any) => {
+  const changeAssetMode = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
     dispatch(setAssetsShowMode(value));
   }, [dispatch]);

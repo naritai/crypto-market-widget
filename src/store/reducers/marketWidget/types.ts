@@ -28,12 +28,16 @@ export interface AssetIndex {
   [key: string]: number;
 };
 
-export interface AssetFilter {
-  [key: string]: "MARGIN" | "BTC" | "BNB" | "ALTS"
+export interface AssetFilterInterface {
+  MARGIN: "MARGIN";
+  BTC: "BTC";
+  BNB: "BNB";
+  ALTS: "ALTS"
 };
 
-export interface ShowMode {
-  [key: string]: "CHANGE" | "VOLUME";
+export interface ShowModeInterface {
+  VOLUME: "VOLUME";
+  CHANGE: "CHANGE";
 };
 
 export interface MarketWidgetState {
@@ -42,8 +46,8 @@ export interface MarketWidgetState {
   assets: Asset[];
   assetIndexes: AssetIndex | null;
   searchValue: string;
-  filter: AssetFilter | string;
-  showMode: ShowMode | string;
+  filter: keyof AssetFilterInterface;
+  showMode: keyof ShowModeInterface;
 };
 
 export interface AssetUpdated {

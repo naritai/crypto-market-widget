@@ -1,12 +1,17 @@
 import React, { Component } from "react";
-export const WebSocketContext = React.createContext(null);
+export const WebSocketContext = React.createContext<WebSocket | null>(null);
 
 type Props = {
   url: string;
   onMessage: (event: any) => void;
 };
 
-export class WebSocketComponent extends Component<Props, any> {
+type State = {
+  ws: WebSocket | null;
+  isShouldReconnect: boolean;
+}
+
+export class WebSocketComponent extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {

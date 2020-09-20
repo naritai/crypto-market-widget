@@ -2,9 +2,11 @@ import React from "react";
 import { ASSETS_FILTER } from '../../../utils/marketWidget';
 import { MarketAssetsList } from './MarketAssetsList';
 import { useSelector } from "react-redux";
+import { RootState } from "../../../store/reducers/index";
 import "./market-assets-list.css";
+import { Asset } from '../../../store/reducers/marketWidget/types';
 
-const marketWidgetSelector = (state: any) => state.marketWidget;
+const marketWidgetSelector = (state: RootState) => state.marketWidget;
 
 export const MarketAssetsListContainer = () => {
   const marketWidget = useSelector(marketWidgetSelector);
@@ -39,14 +41,14 @@ export const MarketAssetsListContainer = () => {
 
   let resolvedAssets = assets;
   if (filter && filter !== ASSETS_FILTER.MARGIN) {
-    resolvedAssets = assets && assets.filter((asset: any) => {
+    resolvedAssets = assets && assets.filter((asset: Asset) => {
       return asset.pm === filter;
     })
   }
 
   if (searchValue) {
     const lower = searchValue.toLowerCase();
-    resolvedAssets = resolvedAssets && resolvedAssets.filter((asset: any) => {
+    resolvedAssets = resolvedAssets && resolvedAssets.filter((asset: Asset) => {
       return asset.s.toLowerCase().includes(lower)
     });
   }

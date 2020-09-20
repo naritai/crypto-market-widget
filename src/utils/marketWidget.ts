@@ -1,14 +1,14 @@
-import { AssetFilter, ShowMode } from './../store/reducers/marketWidget/types';
+import { AssetFilterInterface, ShowModeInterface } from './../store/reducers/marketWidget/types';
 
 
-export const ASSETS_FILTER: AssetFilter = {
+export const ASSETS_FILTER: AssetFilterInterface = {
   MARGIN: 'MARGIN',
   BTC: 'BTC',
   BNB: 'BNB',
   ALTS: 'ALTS'
 };
 
-export const ASSETS_MODE: ShowMode = {
+export const ASSETS_MODE: ShowModeInterface = {
   CHANGE: 'CHANGE',
   VOLUME: 'VOLUME'
 };

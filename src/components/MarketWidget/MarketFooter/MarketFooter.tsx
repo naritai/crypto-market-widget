@@ -3,7 +3,7 @@ import { WebSocketContext } from "../../WebSocketComponent/WebSocketComponent";
 import "./market-footer.css";
 
 export const MarketFooter = React.memo(() => {
-  const websocket = useContext<any>(WebSocketContext);
+  const websocket = useContext(WebSocketContext);
 
   const closeConnection = useCallback(() => {
     if (websocket) {
