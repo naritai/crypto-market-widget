@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 import { setSearchAssetValue, setAssetsShowMode } from '../../../store/actions/marketWidget';
 import _ from "lodash";
 import { ASSETS_MODE } from '../../../utils/marketWidget';
-import { useDebounce } from '../../hooks/useDebounce';
+import { useDebounce } from '../../../hooks/useDebounce';
 import { useSelector, useDispatch } from "react-redux";
 import { SEARCH_ASSET_DELAY } from '../../../utils/marketSeacrhPanel';
 import { marketWidgetSelector } from '../../../store/selectors/marketWidget';

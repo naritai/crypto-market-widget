@@ -5,7 +5,7 @@ import { MarketFooter } from './MarketFooter';
 import { fetchMarketData, setUpdatedMarketData } from '../../store/actions/marketWidget';
 import { WebSocketComponent } from '../WebSocketComponent';
 import { WS_URL } from '../../utils/websoketComponent';
-import { useThrottle } from '../hooks/useThrottle';
+import { useThrottle } from '../../hooks/useThrottle';
 import { useDispatch } from "react-redux";
 import { HANDLE_WS_MESSAGE_DELAY } from '../../utils/marketWidget';
 import "./styles.css";
