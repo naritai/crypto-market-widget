@@ -43,7 +43,7 @@ export const MarketSearchPanel = () => {
         id="search-asset-input"
         placeholder="Search"
         onChange={handleSearch}
-        style={{ width: 350, marginRight: 20 }}
+        style={{ width: 310, marginRight: 20 }}
         value={search}
       />
 
