@@ -1,1 +1,1 @@
-export const WS_URL: string = `${process.env.WS_API_BASE}stream?streams=!miniTicker@arr`;
+export const WS_URL: string = `wss://stream.binance.com/stream?streams=!miniTicker@arr`;

@@ -2,17 +2,23 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
-const dotenv = require('dotenv');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+const isProd = process.env.NODE_ENV === "production";
+const isDev = process.env.NODE_ENV === "development";
+
+const filename = ext => isDev ? `bundle.${ext}` : `bundle.[hash].${ext}`;
+
+const jsLoaders = () => {
+  const loaders = [{
+    loader: 'babel-loader'
+  }];
+
+  return loaders;
+};
+
 module.exports = () => {
-  const env = dotenv.config().parsed;
-
-  const envKeys = Object.keys(env).reduce((prev, next) => {
-    return prev[`process.env.${next}`] = JSON.stringify(env[next]);
-  }, {});
-
   return {
     context: path.resolve(__dirname, 'src'),
 
@@ -23,6 +29,8 @@ module.exports = () => {
       path: path.resolve(__dirname, '/dist'),
       publicPath: '/',
     },
+
+    devtool: isDev ? 'source-map' : false,
 
     plugins: [
       new HtmlWebpackPlugin({
@@ -41,12 +49,8 @@ module.exports = () => {
         ]
       }),
       new CleanWebpackPlugin(),
-      new webpack.DefinePlugin({
-        'process.env.REST_API_BASE': JSON.stringify(env['REST_API_BASE']),
-        'process.env.WS_API_BASE': JSON.stringify(env['WS_API_BASE'])
-      }),
       new MiniCssExtractPlugin({
-        filename: "bundle.css"
+        filename: filename('css')
       })
     ],
    
@@ -58,7 +62,7 @@ module.exports = () => {
             {
               loader: MiniCssExtractPlugin.loader,
               options: {
-                htr: true,
+                htr: isDev,
                 reloadAll: true
               }
             },
@@ -74,7 +78,7 @@ module.exports = () => {
             {
               loader: MiniCssExtractPlugin.loader,
               options: {
-                htr: true,
+                htr: isDev,
                 reloadAll: true
               }
             },
@@ -85,9 +89,7 @@ module.exports = () => {
         {
           test: /\.(ts|js)x?$/,
           exclude: /node_modules/,
-          use: {
-              loader: 'babel-loader'
-          },
+          use: jsLoaders()
         },
       ]
     },
@@ -102,11 +104,12 @@ module.exports = () => {
       contentBase: path.resolve(__dirname, 'dist'),
       compress: true,
       port: 9000,
-      historyApiFallback: true
+      historyApiFallback: true,
+      hot: isDev
     },
 
     resolve: {
-      extensions: ['.ts', '.tsx', '.js', '.jsx', '.less']
+      extensions: ['.ts', '.tsx', '.js', '.jsx']
     },
   }
 };

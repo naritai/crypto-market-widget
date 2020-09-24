@@ -58,10 +58,6 @@ export class WebSocketComponent extends Component<Props, State> {
       console.error('Websocket encountered an error :', event.err);
       ws.close();
     };
-
-    setTimeout(() => {
-      that.setState({ isShouldReconnect: false })
-    }, 5000)
   };
 
   check = () => {
@@ -72,9 +68,9 @@ export class WebSocketComponent extends Component<Props, State> {
   };
 
   componentWillUnmount() {
-    const { ws } = this.state;
+    const { ws, isShouldReconnect } = this.state;
     this.setState({ isShouldReconnect: false });
-    if (ws && ws.close) {
+    if (ws && ws.close && !isShouldReconnect) {
       ws.close();
     }
   }

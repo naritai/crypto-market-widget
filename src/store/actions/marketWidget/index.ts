@@ -18,6 +18,8 @@ import {
 } from "./actionTypes";
 import Axios from 'axios';
 
+const GET_ASSETS_URL = 'https://www.binance.com/exchange-api/v1/public/asset-service/product/get-products';
+
 const fetchMarketDataRequest = (): MarketWidgetActionTypes => ({ type: FETCH_MARKET_DATA_REQUEST });
 const fetchMarketDataFailure = (): MarketWidgetActionTypes => ({ type: FETCH_MARKET_DATA_FAILURE });
 const fetchMarketDataSuccess = (assets: Asset[]): MarketWidgetActionTypes => { 
@@ -55,7 +57,7 @@ const fetchMarketData = () => async (dispatch: any, getState: any) => {
 
   dispatch(fetchMarketDataRequest());
   try {
-    const payload = await Axios.get(`${process.env.REST_API_BASE}public/asset-service/product/get-products`);
+    const payload = await Axios.get(GET_ASSETS_URL);
     const { data: { data } } = payload;
     dispatch(fetchMarketDataSuccess(data));
 
