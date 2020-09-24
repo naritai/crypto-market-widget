@@ -69,6 +69,20 @@ module.exports = () => {
           ]
         },
         {
+          test: /\.css$/i,
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                htr: true,
+                reloadAll: true
+              }
+            },
+            // Translates CSS into CommonJS
+            'css-loader'
+          ]
+        },
+        {
           test: /\.(ts|js)x?$/,
           exclude: /node_modules/,
           use: {
@@ -92,7 +106,7 @@ module.exports = () => {
     },
 
     resolve: {
-      extensions: ['.ts', '.tsx', '.js', '.jsx']
+      extensions: ['.ts', '.tsx', '.js', '.jsx', '.less']
     },
   }
 };

@@ -1,5 +1,6 @@
 import React, { useContext, useCallback } from "react";
 import { WebSocketContext } from "../../WebSocketComponent/WebSocketComponent";
+import { Button } from "antd";
 import "./market-footer.scss";
 
 export const MarketFooter = React.memo(() => {
@@ -13,9 +14,9 @@ export const MarketFooter = React.memo(() => {
 
   return (
     <div className="market-footer">
-      <button className="close-connection-btn" onClick={closeConnection}>
+      <Button  onClick={closeConnection}>
         close connection
-      </button>
+      </Button>
     </div>
   )
 });

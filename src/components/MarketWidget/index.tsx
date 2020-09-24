@@ -8,6 +8,7 @@ import { WS_URL } from '../../utils/websoketComponent';
 import { useThrottle } from '../../hooks/useThrottle';
 import { useDispatch } from "react-redux";
 import { HANDLE_WS_MESSAGE_DELAY } from '../../utils/marketWidget';
+import 'antd/dist/antd.css';
 import "./styles.scss";
 
 export const MarketWidget = () => {
