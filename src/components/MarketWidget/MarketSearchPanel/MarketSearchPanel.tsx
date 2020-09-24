@@ -38,7 +38,7 @@ export const MarketSearchPanel = () => {
   }, [dispatch]);
 
   return (
-    <div className="market-search-panel">
+    <div className="market-search-panel" data-cy="search-panel">
       <input 
         type="text" 
         placeholder="Search"
@@ -47,11 +47,7 @@ export const MarketSearchPanel = () => {
         onChange={handleSearch}
       />
 
-      <Radio.Group 
-    
-        onChange={changeAssetMode}
-        value={showMode}
-      >
+      <Radio.Group onChange={changeAssetMode} value={showMode}>
         <Radio className="radio-btn" style={{ marginRight: 15 }} value={ASSETS_MODE.CHANGE}>Change</Radio>
         <Radio className="radio-btn" value={ASSETS_MODE.VOLUME}>Volume</Radio>
       </Radio.Group>

@@ -4,13 +4,11 @@ describe("Change asset group", () => {
   });
 
   it("Change asset group to BTC", () => {
-    cy.get(".market-widget")
-      .contains("btc")
+    cy.get("[data-cy=market-widget]")
+      .findByText("btc")
       .click()
-      // .should("have.class", "active-btn")
-      // подумать как проверить выбранный раздел
+      .should("have.class", "active-btn");
 
-    cy.get(".market-assets-list .market-assets-list-item")
-      .should("be.visible")
+    cy.get("[data-cy=asset-list-item]").should("be.visible");
   })
-})
+});

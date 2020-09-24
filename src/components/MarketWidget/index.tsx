@@ -24,7 +24,7 @@ export const MarketWidget = () => {
   
   return (
     <WebSocketComponent url={WS_URL} onMessage={handleWSMessageThrottled}>
-      <div className="market-widget">
+      <div className="market-widget" data-cy="market-widget">
         <MarketHeader />
         <MarketBody />
         <MarketFooter />

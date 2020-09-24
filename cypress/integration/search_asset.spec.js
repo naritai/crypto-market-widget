@@ -7,31 +7,18 @@ describe("Search asset logic", () => {
     cy.visit("/");
   });
 
-  it("accepts input", () => {
-    cy.get("#search-asset-input")
-      .type(searchText)
-      .should("have.value", searchText);
-  })
-
   context("Search an asset in the assets list", () => {
-    it("Search a certain asset in the list", () => {
-      cy.get("#search-asset-input")
-        .type(searchText);
+    it("Finds search input element and types in search value", () => {
+      cy.findByPlaceholderText("Search").type(searchText);
 
-      cy.get(".market-assets-list-item")
-        .should("be.visible")
+      cy.get("[data-cy=asset-list-item]").should("be.visible")
         .and("contain", searchedAsset);
     });
 
-    it.only("Renders an empty list if no asset has been found", () => {
-      cy.get("#search-asset-input")
-        .type(fakeAsset);
-
-      cy.get(".market-assets-list-item")
-        .should("not.exist");
-
-      cy.get(".asset-not-found")
-        .should("be.visible")
+    it("Renders an empty list if no asset has been found", () => {
+      cy.findByPlaceholderText("Search").type(fakeAsset);
+      cy.get("[data-cy=asset-list-item]").should("not.exist");
+      cy.get("[data-cy=asset-not-found]").should("be.visible");
     })
   })
-})
+});
