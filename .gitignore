@@ -22,3 +22,8 @@ typings/
 
 # dotenv environment variables file
 .env
+
+# cypress local test results
+cypress/screenshots/
+cypress/videos/
+
