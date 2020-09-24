@@ -40,6 +40,7 @@ export const MarketSearchPanel = () => {
   return (
     <div className="market-search-panel">
       <Input
+        id="search-asset-input"
         placeholder="Search"
         onChange={handleSearch}
         style={{ width: 350, marginRight: 20 }}

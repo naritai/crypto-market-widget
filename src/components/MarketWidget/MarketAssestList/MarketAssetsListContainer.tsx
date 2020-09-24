@@ -35,7 +35,7 @@ export const MarketAssetsListContainer = () => {
       {(!isAssetNotFound || error) && <MarketAssetsListHeader showMode={showMode} />}
       <div className="market-assets-list-container">
         { error && <span className="error">Some error happened</span>}
-        { isAssetNotFound && <span className="not-found">Asset is not found</span>}
+        { isAssetNotFound && <span className="asset-not-found">Asset is not found</span>}
 
         { (!isAssetNotFound || error) && (
           <MarketAssetsList 

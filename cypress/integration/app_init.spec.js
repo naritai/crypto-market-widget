@@ -7,8 +7,8 @@ describe("App initialization", () => {
     cy.get('.market-widget').should('be.visible');
   })
 
-  it("Loads assets when page load", () => {
-    cy.get(".market-assets-list .market-assets-list-item")
-      .should("have.length", 758)
+  it("Loads assets when page is loaded", () => {
+    cy.get(".market-assets-list-item")
+      .should("be.visible")
   })
 })
