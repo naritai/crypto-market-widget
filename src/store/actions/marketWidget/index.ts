@@ -27,7 +27,7 @@ const fetchMarketDataSuccess = (assets: Asset[]): MarketWidgetActionTypes => {
   }
 };
 
-const setAssetFilter = (filter: AssetFilterInterface) => (dispatch: any): MarketWidgetActionTypes => {
+const setAssetFilter = (filter: keyof AssetFilterInterface) => (dispatch: any): MarketWidgetActionTypes => {
   return dispatch({
     type: SET_ASSET_FILTER,
     payload: filter
@@ -98,7 +98,7 @@ const setSearchAssetValue = (value: string) => (dispatch: any): MarketWidgetActi
   })
 };
 
-const setAssetsShowMode = (mode: ShowModeInterface) => (dispatch: any): MarketWidgetActionTypes => {
+const setAssetsShowMode = (mode: keyof ShowModeInterface) => (dispatch: any): MarketWidgetActionTypes => {
   return dispatch({
     type: SET_ASSETS_SHOW_MODE,
     payload: mode

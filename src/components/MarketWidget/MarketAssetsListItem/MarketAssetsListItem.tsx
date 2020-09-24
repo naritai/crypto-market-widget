@@ -1,6 +1,7 @@
 import React from "react";
 import { Asset, ShowModeInterface } from '../../../store/reducers/marketWidget/types';
 import { ASSETS_MODE } from '../../../utils/marketWidget';
+import { List } from "antd";
 import "./market-assets-list-item.scss";
 
 type Props = {
@@ -18,12 +19,12 @@ export const MarketAssetsListItem = React.memo(({ asset, showMode }: Props) => {
   const neut = resolvedValue === 0 || showMode === ASSETS_MODE.VOLUME;
 
   return (
-    <div className="market-assets-list-item">
+    <List.Item>
       <span className="list-item__part">{`${b}/${pm}`}</span>
       <span className="list-item__part">{c}</span>
-      <span className={`bolded list-item__part ${neut ? '' : `${pos ? 'growth' : 'loss' }`}`}>
-        {resolvedValue}
+      <span className={`list-item__part bolded ${neut ? '' : `${pos ? 'growth' : 'loss' }`}`}>
+        {resolvedValue ? resolvedValue : null}
       </span>
-    </div>
+    </List.Item>
   )
 });

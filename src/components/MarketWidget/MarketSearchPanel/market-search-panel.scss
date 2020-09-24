@@ -2,28 +2,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 10px;
-  padding: 10px;
-  padding-top: 0;
 }
 
-.search-asset-input {
-  border: none;
-  outline: none;
-  padding: 5px;
-  border-bottom: 2px solid #cee0eb;
-  font-size: 1em;
-}
-
-.search-asset-input:focus {
-  border-bottom: 2px solid #274C77;
-  color: #274C77;
-}
-
-.search-asset-input::placeholder {
-  color: #274C77;
-}
-
-.asset-show-mode {
-  cursor: pointer;
+.radio-btn {
+  color: white;
 }

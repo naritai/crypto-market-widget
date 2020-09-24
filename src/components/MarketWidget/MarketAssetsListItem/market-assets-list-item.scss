@@ -1,14 +1,3 @@
-.market-assets-list-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 5px;
-}
-
-.list-item__part {
-  text-align: left;
-  width: 120px;
-}
-
 .bolded {
   font-weight: 500;
 }
@@ -19,4 +8,9 @@
 
 .loss {
   color: #cf2862;
+}
+
+.list-item__part {
+  width: 150px;
+  text-align: left;
 }

@@ -14,7 +14,7 @@ export const MarketFooter = React.memo(() => {
 
   return (
     <div className="market-footer">
-      <Button  onClick={closeConnection}>
+      <Button size="large" danger className="close-ws-btn" onClick={closeConnection}>
         close connection
       </Button>
     </div>

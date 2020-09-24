@@ -4,6 +4,7 @@ import { setAssetFilter } from '../../../store/actions/marketWidget';
 import { useSelector, useDispatch } from "react-redux";
 import { marketWidgetSelector } from '../../../store/selectors/marketWidget';
 import { RootState } from '../../../store/reducers';
+import { Button } from "antd";
 import "./market-navigation.scss";
 
 const filterSelector = (state: RootState) => marketWidgetSelector(state).filter;
@@ -35,31 +36,39 @@ export const MarketNavigation = () => {
 
   return (
     <div className="market-navigation">
-      <button 
-        className={`market-navigation__btn ${isMarginActive ? 'active-btn' : ''}`}
+      <Button
+        size="large"
+        className="market-nav__btn"
+        type={isMarginActive ? 'primary' : 'default'}
         onClick={setMargin}
       >
         margin
-      </button>
-      <button 
-        className={`market-navigation__btn ${isBnbActive ? 'active-btn' : ''}`}
+      </Button>
+      <Button
+        size="large"
+        className="market-nav__btn"
+        type={isBnbActive ? 'primary' : 'default'}
         onClick={setBNBParentMarket}
       >
         bnb
-      </button>
-      <button 
-        className={`market-navigation__btn ${isBtcActive ? 'active-btn' : ''}`}
+      </Button>
+      <Button
+        size="large"
+        className="market-nav__btn"
+        type={isBtcActive ? 'primary' : 'default'}
         onClick={setBTCParentMarket}
       >
         btc
-      </button>
+      </Button>
 
-      <button 
-        className={`market-navigation__btn ${isAltsActive ? 'active-btn' : ''}`}
+      <Button
+        size="large"
+        className="market-nav__btn no-margin"
+        type={isAltsActive ? 'primary' : 'default'}
         onClick={setALTSParentMarket}
       >
         alts
-      </button>
+      </Button>
     </div>
   )
 };

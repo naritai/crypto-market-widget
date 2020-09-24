@@ -2,33 +2,16 @@
   width: 100%;
   box-sizing: border-box;
   display: flex;
-  padding-bottom: 10px;
   justify-content: space-between;
-  background-color: #CE6C47;
+  margin-bottom: 10px;
+  margin-top: 40px;
 }
 
-.market-navigation__btn {
-  padding: 5px;
-  width: 90px;
-  font-size: 1.1em;
-  font-weight: bold;
-  outline: none;
-  border: 2px solid transparent;
-  color: #274C77;
-  background-color: white;
-  text-transform: uppercase;
+.market-nav__btn {
+  width: 150px;
+  margin-right: 10px;
 }
 
-.market-navigation__btn:hover {
-  background-color: #E7ECEF;
-  cursor: pointer;
-}
-
-.market-navigation__btn:hover:active {
-  background-color: #cee0eb;
-  cursor: pointer;
-}
-
-.active-btn {
-  background-color: #abe7a8;
+.no-margin {
+  margin: 0;
 }

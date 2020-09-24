@@ -1,33 +1,26 @@
-.market-assets-list {
-  height: 300px;
+.market-assets-list-container {
+  height: 350px;
   overflow: auto;
 }
 
-.market-assets-list-header {
-  display: flex;
-  justify-content: space-between;
-  padding: 5px;
-  padding-right: 20px;
-}
-
-.market-assets-list-header h3 {
-  width: 120px;
-  color: #4C2719;
-}
-
-.loading-indicator {
-  height: 360px;
-  width: 385px;
-}
-
-.error-indicator {
-  height: 360px;
-  width: 385px;
+.error {
+  display: block;
+  padding: 20px;
   color: tomato;
 }
 
-.no-data-indicator,
-.asset-not-found {
-  height: 360px;
-  width: 385px;
+.not-found {
+  display: block;
+  padding: 20px;
+  color: #000;
+}
+
+.list-header {
+  padding: 8px 16px;
+  padding-right: 31px;
+}
+
+.list-header__part {
+  width: 150px;
+  text-align: left;
 }

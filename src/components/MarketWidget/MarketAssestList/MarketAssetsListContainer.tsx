@@ -3,43 +3,16 @@ import { ASSETS_FILTER } from '../../../utils/marketWidget';
 import { MarketAssetsList } from './MarketAssetsList';
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/reducers/index";
-import "./market-assets-list.scss";
 import { Asset } from '../../../store/reducers/marketWidget/types';
+import { MarketAssetsListHeader } from './MarketAssetsListHeader';
+import "./market-assets-list.scss";
 
 const marketWidgetSelector = (state: RootState) => state.marketWidget;
 
 export const MarketAssetsListContainer = () => {
   const marketWidget = useSelector(marketWidgetSelector);
-  const {
-    assets, filter, searchValue, 
-    loading, showMode, error
-  } = marketWidget;
-
-  if (error) {
-    return (
-      <div className="error-indicator">
-        Some error happened...
-      </div>
-    )
-  }
-
-  if (loading) {
-    return (
-      <div className="loading-indicator">
-        Loading data...
-      </div>
-    )
-  }
-
-  if (!assets.length) {
-    return (
-      <div className="no-data-indicator">
-        No data available...
-      </div>
-    )
-  }
-
-  
+  const { assets, filter, searchValue, 
+    loading, showMode, error } = marketWidget;
 
   let resolvedAssets = assets;
   if (filter && filter !== ASSETS_FILTER.MARGIN) {
@@ -55,13 +28,23 @@ export const MarketAssetsListContainer = () => {
     });
   }
 
-  if (searchValue && resolvedAssets.length === 0) {
-    return (
-      <div className="asset-not-found">
-        Asset is not found
-      </div>
-    )
-  }
+  const isAssetNotFound = searchValue && resolvedAssets.length === 0;
 
-  return <MarketAssetsList assets={resolvedAssets} showMode={showMode} />
+  return (
+    <>
+      {(!isAssetNotFound || error) && <MarketAssetsListHeader showMode={showMode} />}
+      <div className="market-assets-list-container">
+        { error && <span className="error">Some error happened</span>}
+        { isAssetNotFound && <span className="not-found">Asset is not found</span>}
+
+        { (!isAssetNotFound || error) && (
+          <MarketAssetsList 
+            assets={resolvedAssets} 
+            showMode={showMode} 
+            loading={loading}
+          />)
+        }
+      </div>
+    </>
+  )
 };
