@@ -1,8 +1,27 @@
 .market-footer {
-  background-color: inherit;
+  background-color: #CE6C47;
 }
 
-.close-ws-btn {
-  margin-top: 20px;
-  width: 150px;
+.close-connection-btn {
+  margin: 12px;
+  margin-left: 0;
+  width: 180px;
+  height: 35px;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  outline: none;
+  border: 2px solid transparent;
+  border-radius: 2px;
+  background-color: white;
+  color: #4C2719;
+  text-transform: uppercase;
+}
+
+.close-connection-btn:hover {
+  background-color: #f7bebd;
+  
+}
+.close-connection-btn:hover:active {
+  background-color: #fc9a98;
 }

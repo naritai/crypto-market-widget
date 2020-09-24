@@ -16,12 +16,14 @@
 }
 
 .list-header {
+  display: flex;
+  justify-content: space-between;
   padding: 8px 16px;
   padding-right: 31px;
 }
 
 .list-header__part {
-  width: 150px;
+  width: 100px;
   font-size: 1.5em;
   text-align: left;
   color: #A1683A;

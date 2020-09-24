@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { SEARCH_ASSET_DELAY } from '../../../utils/marketSeacrhPanel';
 import { marketWidgetSelector } from '../../../store/selectors/marketWidget';
 import { RootState } from '../../../store/reducers';
-import { Input, Radio } from "antd";
+import { Radio } from "antd";
 import "./market-search-panel.scss";
 import { ShowModeInterface } from '../../../store/reducers/marketWidget/types';
 import { RadioChangeEvent } from 'antd/lib/radio';
@@ -39,12 +39,12 @@ export const MarketSearchPanel = () => {
 
   return (
     <div className="market-search-panel">
-      <Input
-        id="search-asset-input"
+      <input 
+        type="text" 
         placeholder="Search"
-        onChange={handleSearch}
-        style={{ width: 310, marginRight: 20 }}
         value={search}
+        className="search-asset-input"
+        onChange={handleSearch}
       />
 
       <Radio.Group 

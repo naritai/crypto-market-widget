@@ -2,16 +2,39 @@
   width: 100%;
   box-sizing: border-box;
   display: flex;
+  padding-bottom: 10px;
   justify-content: space-between;
-  margin-bottom: 10px;
-  margin-top: 40px;
+  background-color: #CE6C47;
 }
 
-.market-nav__btn {
-  width: 150px;
-  margin-right: 10px;
+.market-navigation__btn {
+  padding: 5px;
+  margin-right: 5px;
+  width: 120px;
+  font-size: 1.1em;
+  font-weight: bold;
+  outline: none;
+  border: 2px solid transparent;
+  border-radius: 2px;
+  color: #274C77;
+  background-color: white;
+  text-transform: uppercase;
 }
 
 .no-margin {
   margin: 0;
+}
+
+.market-navigation__btn:hover {
+  background-color: #E7ECEF;
+  cursor: pointer;
+}
+
+.market-navigation__btn:hover:active {
+  background-color: #cee0eb;
+  cursor: pointer;
+}
+
+.active-btn {
+  background-color: #abe7a8;
 }

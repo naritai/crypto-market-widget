@@ -1,3 +1,25 @@
+.search-asset-input {
+  width: 300px;
+  border: none;
+  outline: none;
+  padding: 5px;
+  border-bottom: 4px solid #cee0eb;
+  border-radius: 2px;
+  background-color: transparent;
+  font-size: 1.3em;
+  color: white;
+}
+
+.search-asset-input:focus {
+  border-bottom: 4px solid #99b3d1;
+  color: white;
+}
+
+.search-asset-input::placeholder {
+  color: whitesmoke;
+}
+
+
 .market-search-panel {
   display: flex;
   align-items: center;
