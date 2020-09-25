@@ -1,5 +1,5 @@
 import React, { useContext, useCallback } from "react";
-import { WebSocketContext } from "../../WebSocketComponent/WebSocketComponent";
+import { WebSocketContext } from '..';
 import "./market-footer.scss";
 
 export const MarketFooter = React.memo(() => {
