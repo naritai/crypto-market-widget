@@ -1,4 +1,4 @@
-import { Asset, AssetFilter, AssetIndex, ShowMode } from './../../reducers/marketWidget/types';
+import { Asset, AssetFilterInterface, AssetIndex, ShowModeInterface } from './../../reducers/marketWidget/types';
 
 import {
   FETCH_MARKET_DATA_REQUEST,
@@ -8,7 +8,8 @@ import {
   SAVE_MARKET_ASSETS_INDEXES,
   SET_UPDATED_MARKET_DATA,
   SET_SEARCH_ASSET_VALUE,
-  SET_ASSETS_SHOW_MODE
+  SET_ASSETS_SHOW_MODE,
+  FETCH_MARKET_DATA
 } from "./actionTypes";
 
 export interface fetchMarketDataRequestAction {
@@ -26,7 +27,7 @@ export interface fetchMarketDataSuccessAction {
 
 export interface setAssetFilterAction {
   type: typeof SET_ASSET_FILTER;
-  payload: AssetFilter;
+  payload: keyof AssetFilterInterface;
 };
 
 export interface saveMarketAssetIndexesAction {
@@ -46,7 +47,11 @@ export interface setSearchAssetValueAction {
 
 export interface setAssetsShowModeAction {
   type: typeof SET_ASSETS_SHOW_MODE;
-  payload: ShowMode;
+  payload: keyof ShowModeInterface;
+};
+
+export interface fetchMarketData {
+  type: typeof FETCH_MARKET_DATA;
 };
 
 export type MarketWidgetActionTypes =
@@ -57,4 +62,5 @@ export type MarketWidgetActionTypes =
   saveMarketAssetIndexesAction |
   setUpdatedMarketDataAction |
   setSearchAssetValueAction |
-  setAssetsShowModeAction;
+  setAssetsShowModeAction |
+  fetchMarketData;

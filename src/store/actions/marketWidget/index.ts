@@ -1,10 +1,5 @@
-import { 
-  Asset,
-  AssetFilterInterface,
-  AssetIndex,
-  ShowModeInterface,
-  AssetUpdated
-} from './../../reducers/marketWidget/types';
+import {  Asset, AssetFilterInterface, 
+  ShowModeInterface, AssetUpdated } from './../../reducers/marketWidget/types';
 import { MarketWidgetActionTypes } from "./types";
 import {
   FETCH_MARKET_DATA_REQUEST,
@@ -14,14 +9,15 @@ import {
   SAVE_MARKET_ASSETS_INDEXES,
   SET_UPDATED_MARKET_DATA,
   SET_SEARCH_ASSET_VALUE,
-  SET_ASSETS_SHOW_MODE
+  SET_ASSETS_SHOW_MODE,
+  FETCH_MARKET_DATA,
+  UPDATE_MARKET_DATA
 } from "./actionTypes";
-import Axios from 'axios';
 
-const GET_ASSETS_URL = 'https://www.binance.com/exchange-api/v1/public/asset-service/product/get-products';
-
+const fetchMarketData = (): MarketWidgetActionTypes => ({ type: FETCH_MARKET_DATA });
 const fetchMarketDataRequest = (): MarketWidgetActionTypes => ({ type: FETCH_MARKET_DATA_REQUEST });
-const fetchMarketDataFailure = (): MarketWidgetActionTypes => ({ type: FETCH_MARKET_DATA_FAILURE });
+const fetchMarketDataFailure = (): MarketWidgetActionTypes => ({ type: FETCH_MARKET_DATA_FAILURE })
+
 const fetchMarketDataSuccess = (assets: Asset[]): MarketWidgetActionTypes => { 
   return {
     type: FETCH_MARKET_DATA_SUCCESS, 
@@ -29,68 +25,33 @@ const fetchMarketDataSuccess = (assets: Asset[]): MarketWidgetActionTypes => {
   }
 };
 
-const setAssetFilter = (filter: keyof AssetFilterInterface) => (dispatch: any): MarketWidgetActionTypes => {
-  return dispatch({
-    type: SET_ASSET_FILTER,
-    payload: filter
-  });
-};
-
-const saveMarketAssetIndexes = (assets: Asset[]) => {
-  return (dispatch: any): MarketWidgetActionTypes => {
-    const indexes: AssetIndex = {};
-  
-    assets.forEach((asset: Asset, idx: number) => {
-      indexes[asset.s] = idx;
-    });
-  
-    return dispatch({
-      type: SAVE_MARKET_ASSETS_INDEXES,
-      payload: indexes
-    });
-  }
-}
-
-const fetchMarketData = () => async (dispatch: any, getState: any) => {
-  const { marketWidget } = getState();
-  const { assetIndexes } = marketWidget;
-
-  dispatch(fetchMarketDataRequest());
-  try {
-    const payload = await Axios.get(GET_ASSETS_URL);
-    const { data: { data } } = payload;
-    dispatch(fetchMarketDataSuccess(data));
-
-    if (!Object.entries(assetIndexes).length) {
-      dispatch(saveMarketAssetIndexes(data));
-    }
-  } catch (error) {
-    dispatch(fetchMarketDataFailure())
+const saveMarketAssetIndexes = (indexes: any): MarketWidgetActionTypes => {
+  return {
+    type: SAVE_MARKET_ASSETS_INDEXES,
+    payload: indexes
   }
 };
 
-const setUpdatedMarketData = ({ data }: { data: string }) => {
-  return (dispatch: any, getState: any): MarketWidgetActionTypes => {
-    const { marketWidget } = getState();
-    const { assetIndexes, assets } = marketWidget;
-  
-    const parsedData = JSON.parse(data);
-    const updatedAssets = assets.slice();
-  
-    parsedData.data.forEach((asset: AssetUpdated) => {
-      const updatedAssetIdx = assetIndexes[asset.s];
-      const { c, l, h, o } = asset;
-      updatedAssets[updatedAssetIdx] = {
-        ...updatedAssets[updatedAssetIdx],
-        c, l, h, o
-      };
-    });
-  
-    return dispatch({
-      type: SET_UPDATED_MARKET_DATA,
-      payload: updatedAssets
-    })
+const updateMarketData = ({ data }: { data: string }) => {
+  return {
+    type: UPDATE_MARKET_DATA,
+    payload: data
   }
+};
+
+const setUpdatedMarketData = (updatedAssets: Asset[]): MarketWidgetActionTypes => {
+  return {
+    type: SET_UPDATED_MARKET_DATA,
+    payload: updatedAssets
+  }
+};
+
+const setAssetFilter = (filter: keyof AssetFilterInterface) => 
+  (dispatch: any): MarketWidgetActionTypes => {
+    return dispatch({
+      type: SET_ASSET_FILTER,
+      payload: filter
+    });
 };
 
 const setSearchAssetValue = (value: string) => (dispatch: any): MarketWidgetActionTypes => {
@@ -107,10 +68,15 @@ const setAssetsShowMode = (mode: keyof ShowModeInterface) => (dispatch: any): Ma
   })
 };
 
-export { 
+export {
+  fetchMarketDataRequest,
+  fetchMarketDataSuccess,
+  fetchMarketDataFailure,
   fetchMarketData, 
   setAssetFilter,
   setUpdatedMarketData,
   setSearchAssetValue,
-  setAssetsShowMode
+  setAssetsShowMode,
+  saveMarketAssetIndexes,
+  updateMarketData
 };

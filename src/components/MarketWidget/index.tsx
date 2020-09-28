@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { MarketHeader } from './MarketHeader';
 import { MarketBody } from './MarketBody';
 import { MarketFooter } from './MarketFooter';
-import { fetchMarketData, setUpdatedMarketData } from '../../store/actions/marketWidget';
+import { fetchMarketData, updateMarketData } from '../../store/actions/marketWidget';
 import { WS_URL } from '../../utils/websoketComponent';
 import { useThrottle } from '../../hooks/useThrottle';
 import { useDispatch } from "react-redux";
@@ -20,7 +20,7 @@ export const MarketWidget = () => {
   }, []);
 
   const handleWSMessageThrottled = useThrottle(
-    (value: { data: string }) => dispatch(setUpdatedMarketData(value)), 
+    (value: { data: string }) => dispatch(updateMarketData(value)), 
     HANDLE_WS_MESSAGE_DELAY
   );
 
