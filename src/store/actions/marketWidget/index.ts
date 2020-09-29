@@ -46,12 +46,11 @@ const setUpdatedMarketData = (updatedAssets: Asset[]): MarketWidgetActionTypes =
   }
 };
 
-const setAssetFilter = (filter: keyof AssetFilterInterface) => 
-  (dispatch: any): MarketWidgetActionTypes => {
-    return dispatch({
-      type: SET_ASSET_FILTER,
-      payload: filter
-    });
+const setAssetFilter = (filter: keyof AssetFilterInterface): MarketWidgetActionTypes => {
+  return {
+    type: SET_ASSET_FILTER,
+    payload: filter
+  }
 };
 
 const setSearchAssetValue = (value: string) => (dispatch: any): MarketWidgetActionTypes => {

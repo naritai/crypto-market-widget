@@ -1,42 +1,10 @@
 import { Asset, AssetIndex, AssetUpdated } from './../reducers/marketWidget/types';
 import { marketWidgetSelector } from './../selectors/marketWidget';
-import { put, takeEvery, call, select } from "redux-saga/effects";
-import { 
-  FETCH_MARKET_DATA,
-  UPDATE_MARKET_DATA
-} from './../actions/marketWidget/actionTypes';
+import { put, call, select, takeLatest, all } from "redux-saga/effects";
 import Axios from 'axios';
-
+import * as actions from "../actions/marketWidget/";
+import * as actionTypes from './../actions/marketWidget/actionTypes';
 const GET_ASSETS_URL = 'https://www.binance.com/exchange-api/v1/public/asset-service/product/get-products';
-
-import { 
-  fetchMarketDataRequest,
-  fetchMarketDataSuccess,
-  fetchMarketDataFailure,
-  saveMarketAssetIndexes,
-  setUpdatedMarketData
-} from "../actions/marketWidget/"
-
-function* watchMarketDataRequest() {
-  yield takeEvery(FETCH_MARKET_DATA, fetchMarketDataAsync);
-};
-
-function* fetchMarketDataAsync() {
-  try {
-    yield put(fetchMarketDataRequest());
-    const data = yield call(() => fetchAssets());
-    const marketWidget = yield select(marketWidgetSelector);
-    
-    if (!Object.entries(marketWidget.assetIndexes).length) {
-      const indexes = yield call(() => getMarketAssetsIndexes(data));
-      yield put(saveMarketAssetIndexes(indexes));
-    }
-
-    yield put(fetchMarketDataSuccess(data));
-  } catch (error) {
-    yield put(fetchMarketDataFailure());
-  }
-};
 
 const getMarketAssetsIndexes = (data: Asset[]) => {
   const indexes: AssetIndex = {};
@@ -57,11 +25,24 @@ const fetchAssets = async () => {
   }
 };
 
-function* watchMarketDataUpdate() {
-  yield takeEvery(UPDATE_MARKET_DATA, updateMarketDataAsync);
+function* fetchMarketDataAsync() {
+  try {
+    yield put(actions.fetchMarketDataRequest());
+    const data = yield call(() => fetchAssets());
+    const marketWidget = yield select(marketWidgetSelector);
+    
+    if (!Object.entries(marketWidget.assetIndexes).length) {
+      const indexes = yield call(() => getMarketAssetsIndexes(data));
+      yield put(actions.saveMarketAssetIndexes(indexes));
+    }
+
+    yield put(actions.fetchMarketDataSuccess(data));
+  } catch (error) {
+    yield put(actions.fetchMarketDataFailure());
+  }
 };
 
-function* updateMarketDataAsync({ payload }: any) {
+function* updateMarketData({ payload }: any) {
   const marketWidget = yield select(marketWidgetSelector);
   const { assetIndexes, assets } = marketWidget;
 
@@ -77,11 +58,17 @@ function* updateMarketDataAsync({ payload }: any) {
     };
   });
 
-  yield put(setUpdatedMarketData(updatedAssets));
-}
+  yield put(actions.setUpdatedMarketData(updatedAssets));
+};
 
-export {
-  watchMarketDataRequest,
-  fetchMarketDataAsync,
-  watchMarketDataUpdate
+function* setAssetsFilterSaga(filter: any) {
+  yield put(actions.setAssetFilter(filter));
+};
+
+export function* watchMarketDataSagas() {
+  all([
+    yield takeLatest(actionTypes.FETCH_MARKET_DATA, fetchMarketDataAsync),
+    yield takeLatest(actionTypes.UPDATE_MARKET_DATA, updateMarketData),
+    yield takeLatest(actionTypes.SET_ASSET_FILTER, setAssetsFilterSaga)
+  ])
 };
