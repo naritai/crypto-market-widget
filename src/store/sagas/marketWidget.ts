@@ -61,14 +61,9 @@ function* updateMarketData({ payload }: any) {
   yield put(actions.setUpdatedMarketData(updatedAssets));
 };
 
-function* setAssetsFilterSaga(filter: any) {
-  yield put(actions.setAssetFilter(filter));
-};
-
 export function* watchMarketDataSagas() {
   all([
     yield takeLatest(actionTypes.FETCH_MARKET_DATA, fetchMarketDataAsync),
-    yield takeLatest(actionTypes.UPDATE_MARKET_DATA, updateMarketData),
-    yield takeLatest(actionTypes.SET_ASSET_FILTER, setAssetsFilterSaga)
+    yield takeLatest(actionTypes.UPDATE_MARKET_DATA, updateMarketData)
   ])
 };
