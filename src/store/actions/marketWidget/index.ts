@@ -16,7 +16,6 @@ import {
 const fetchMarketData = (): MarketWidgetActionTypes => ({ type: FETCH_MARKET_DATA });
 const fetchMarketDataRequest = (): MarketWidgetActionTypes => ({ type: FETCH_MARKET_DATA_REQUEST });
 const fetchMarketDataFailure = (): MarketWidgetActionTypes => ({ type: FETCH_MARKET_DATA_FAILURE })
-
 const fetchMarketDataSuccess = (assets: Asset[]): MarketWidgetActionTypes => { 
   return {
     type: FETCH_MARKET_DATA_SUCCESS, 
